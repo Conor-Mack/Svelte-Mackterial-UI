@@ -11,7 +11,7 @@ const postcssOptions = () => ({
     [
       "sass",
       {
-        includePaths: ["./node_modules", "../node_modules"]
+        includePaths: ["./node_modules"]
       }
     ]
   ]

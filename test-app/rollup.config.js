@@ -4,10 +4,24 @@ import commonjs from "@rollup/plugin-commonjs";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import alias from "rollup-plugin-alias";
+import postcss from "rollup-plugin-postcss";
 import path from "path";
 
 const production = !process.env.ROLLUP_WATCH;
 
+const postcssOptions = () => ({
+  extensions: [".scss", ".sass"],
+  extract: false,
+  minimize: true,
+  use: [
+    [
+      "sass",
+      {
+        includePaths: ["./src/theme.scss"]
+      }
+    ]
+  ]
+});
 const aliases = {
   resolve: [".jsx", ".js", ".svelte"],
   entries: [
@@ -56,7 +70,8 @@ export default {
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser()
+    production && terser(),
+    postcss(postcssOptions())
   ],
   watch: {
     clearScreen: false

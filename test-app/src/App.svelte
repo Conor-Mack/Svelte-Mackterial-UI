@@ -1,7 +1,5 @@
 <script>
   import { Button } from "@BBMD";
-  //efefwfwe
-  export let name;
 </script>
 
 <style>
@@ -27,6 +25,12 @@
 </style>
 
 <main>
-  <h1>Hello {name}!</h1>
-  <Button />
+  <h1>BUTTONS!</h1>
+  <Button
+    variant="unelevated"
+    text="Unelevated"
+    colour="secondary"
+    size="large" />
+  <Button variant="raised" text="Raised" />
+  <Button variant="outlined" text="Outlined" colour="secondary" size="small" />
 </main>
