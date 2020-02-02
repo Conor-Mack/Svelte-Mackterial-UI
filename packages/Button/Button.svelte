@@ -1,7 +1,9 @@
 <script>
-  import { setContext } from "svelte";
-  import Icon from "../Icon";
+  import { setContext, getContext } from "svelte";
+  import Icon from "../Icon.svelte";
+  import ripple from "../Ripple.js";
   import ClassBuilder from "../ClassBuilder.js";
+
   const cb = new ClassBuilder("button", ["primary", "medium"]);
 
   export let variant = "raised";
@@ -29,19 +31,17 @@
 </script>
 
 <!-- 
-TODO: Make button work with ripple action (this needs to be rolled out throughout library)
-TODO: ? how would href button handle linking via the href?
+Button defaults to what a link button looks like but obviously has no ability to add a href. Depends on how this needs to be handled by Budibase
  -->
 {#if href}
   <a class={blockClasses} {href} on:click>
     <span class={cb.elements('label')}>{text}</span>
   </a>
 {:else}
-  <button class={blockClasses} {disabled} on:click>
-    {#if renderTrailingIcon}
+  <button use:ripple={{ colour }} class={blockClasses} {disabled} on:click>
+    {#if renderLeadingIcon}
       <Icon {icon} />
     {/if}
-    <div class={cb.elements('ripple')} />
     <span class={cb.elements('label')}>{text}</span>
     {#if renderTrailingIcon}
       <Icon {icon} />

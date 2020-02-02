@@ -1,4 +1,5 @@
 <script>
+  import { setContext } from "svelte";
   import { Button } from "@BBMD";
 </script>
 
@@ -33,7 +34,7 @@
     colour="secondary"
     size="small"
     disabled />
-  <Button variant="raised" text="Raised" disabled />
+  <Button variant="outlined" text="Raised" />
   <Button variant="outlined" text="Outlined" colour="secondary" size="small" />
   <Button text="Nothing" colour="secondary" />
 </main>

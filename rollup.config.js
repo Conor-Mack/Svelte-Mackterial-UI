@@ -28,7 +28,6 @@ export default {
     }
   ],
   plugins: [
-    // alias(aliases()),
     svelte({
       hydratable: true
     }),
