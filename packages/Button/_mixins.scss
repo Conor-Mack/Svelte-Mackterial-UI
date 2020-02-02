@@ -12,8 +12,7 @@
     @include button-sizing($feat-structure, 9px, 32px, 13px);
   }
 
-  //TODO: New Convention = bbmd-[block or element]--[property]-[value] i.e. bbmd-mdc-button--color-secondary
-  .bbmd-mdc-button--secondary {
+  .bbmd-mdc-button--colour-secondary {
     //no feature target as relying on theme variable custom property
     @include mdc-button-ink-color(secondary);
 
