@@ -13,6 +13,7 @@
   export let href = "";
   export let icon = "";
   export let trailingIcon = false;
+  export let fullBleed = false;
 
   export let text = "";
   export let disabled = false;
@@ -30,15 +31,23 @@
   });
 </script>
 
-<!-- 
-Button defaults to what a link button looks like but obviously has no ability to add a href. Depends on how this needs to be handled by Budibase
- -->
+<style>
+  .fullBleed {
+    width: 100%;
+  }
+</style>
+
 {#if href}
   <a class={blockClasses} {href} on:click>
     <span class={cb.elements('label')}>{text}</span>
   </a>
 {:else}
-  <button use:ripple={{ colour }} class={blockClasses} {disabled} on:click>
+  <button
+    use:ripple={{ colour }}
+    class={blockClasses}
+    class:fullBleed
+    {disabled}
+    on:click>
     {#if renderLeadingIcon}
       <Icon {icon} />
     {/if}
