@@ -1,5 +1,5 @@
-@import "@material/feature-targeting/functions";
-@import "@material/feature-targeting/mixins";
+@import "@material/feature-targeting/_functions.scss";
+@import "@material/feature-targeting/_mixins.scss";
 
 @mixin bbmd-button-styles($query: mdc-feature-all()) {
   $feat-structure: mdc-feature-create-target($query, structure);

@@ -17,7 +17,7 @@ const postcssOptions = () => ({
     [
       "sass",
       {
-        includePaths: ["./src/theme.scss"]
+        includePaths: ["../node_modules"]
       }
     ]
   ]
@@ -25,7 +25,10 @@ const postcssOptions = () => ({
 const aliases = {
   resolve: [".jsx", ".js", ".svelte"],
   entries: [
-    { find: "@BBMD", replacement: path.resolve(__dirname, "../dist/index.js") }
+    {
+      find: "@BBMD",
+      replacement: path.resolve(__dirname, "../packages/index.js")
+    }
   ]
 };
 
