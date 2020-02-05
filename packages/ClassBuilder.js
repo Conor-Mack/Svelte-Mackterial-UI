@@ -21,7 +21,8 @@ export default class ClassBuilder {
   buildClass(base, classParams) {
     let cls = base;
     const { modifiers, customs, extras } = classParams;
-    if (!!modifiers) cls += modifiers.map(m => ` ${base}--${m}`).join(" ");
+    if (!!modifiers)
+      cls += modifiers.map(m => (!!m ? ` ${base}--${m}` : "")).join(" ");
     if (!!customs)
       cls += Object.entries(customs)
         .map(([property, value]) => {

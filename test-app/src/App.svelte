@@ -38,6 +38,11 @@
   <Button text="Nothing" size="large" colour="secondary" fullBleed />
 
   <h1>TextFields</h1>
-  <Textfield label="Surname" helperText="Please add your surname" />
+  <Textfield helperText="Please add your surname" />
+  <Textfield
+    label="nother test"
+    icon="alarm_on"
+    trailingIcon={true}
+    helperText="Please add your surname" />
 
 </main>

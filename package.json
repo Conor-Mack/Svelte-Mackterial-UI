@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "dev:testapp": "rollup --config ./test-app/rollup.config.js -w",
+    "dev:pkgs": "rollup -c -w",
+    "dev": "run-s dev:pkgs",
     "start": "sirv public"
   },
   "devDependencies": {
@@ -18,6 +20,7 @@
   "dependencies": {
     "bind-decorator": "^1.0.11",
     "material-components-web": "^4.0.0",
+    "npm-run-all": "^4.1.5",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-postcss": "^2.0.5",
     "sass": "^1.25.1-test.1",
