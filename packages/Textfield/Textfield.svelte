@@ -10,11 +10,10 @@
   const cb = new ClassBuilder("text-field");
 
   let tf = null;
+  let instance = null;
 
   onMount(() => {
-    let el = document.querySelector(".mdc-text-field");
-    tf = new MDCTextField(el);
-    console.log(tf);
+    if (!!tf) instance = new MDCTextField(tf);
   });
 
   export let label = "";
@@ -30,7 +29,7 @@
   export let icon = "";
   export let trailingIcon = false;
   export let multiLine = false;
-  export let textArea = true;
+  export let textArea = false;
   export let rows = 8;
   export let cols = 40;
 
@@ -63,7 +62,7 @@ NOTE: Do not use mdc-line-ripple inside of mdc-text-field if you plan on using m
   $: renderTrailingIcon = !!icon && trailingIcon;
 
   function focus(event) {
-    tf.focus();
+    instance.focus();
   }
 </script>
 
@@ -72,7 +71,7 @@ TODO: Test multi-lining of textfields and implement in component
 TODO: Implement line ripple
  -->
 
-<div class={blockClasses}>
+<div bind:this={tf} class={blockClasses}>
   {#if textArea}
     {#if useCharCounter}
       <div class="mdc-text-field-character-counter">{`0 / ${maxLength}`}</div>
