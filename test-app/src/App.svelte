@@ -1,6 +1,6 @@
 <script>
   import { setContext } from "svelte";
-  import { Button, Icon } from "@BBMD";
+  import { Button, Icon, Textfield } from "@BBMD";
 </script>
 
 <style>
@@ -30,12 +30,14 @@
   <h1>BUTTONS!</h1>
   <Button
     href="https://www.youtube.com/watch?v=BUS6nKpddec"
-    variant="unelevated"
     text="Link Me"
     colour="secondary"
-    size="small"
-    disabled />
-  <Button text="Raised" icon="alarm_on" trailingIcon />
+    size="small" />
+  <Button text="Raised" on:click={() => alert('Hi')} />
   <Button variant="outlined" text="Outlined" colour="secondary" size="small" />
   <Button text="Nothing" size="large" colour="secondary" fullBleed />
+
+  <h1>TextFields</h1>
+  <Textfield label="Surname" helperText="Please add your surname" />
+
 </main>

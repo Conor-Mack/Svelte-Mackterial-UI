@@ -18,7 +18,7 @@
   export let text = "";
   export let disabled = false;
 
-  $: if (!!icon) {
+  $: if (icon) {
     setContext("BBMD:icon:context", "button");
   }
 

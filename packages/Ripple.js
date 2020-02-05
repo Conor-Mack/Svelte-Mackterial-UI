@@ -19,6 +19,9 @@ export default function ripple(
   return {
     destroy() {
       component.destroy();
+      node.classList.remove("mdc-ripple-surface");
+      node.classList.remove("mdc-ripple-surface--primary");
+      node.classList.remove("mdc-ripple-surface--accent");
       component = null;
     }
   };
