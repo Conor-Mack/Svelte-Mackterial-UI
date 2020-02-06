@@ -38,11 +38,15 @@
   <Button text="Nothing" size="large" colour="secondary" fullBleed />
 
   <h1>TextFields</h1>
-  <Textfield
+  <!-- <Textfield
     label="Surname"
     variant="filled"
-    helperText="Please add your surname" />
+    helperText="Please add your surname" /> -->
   <br />
-  <Textfield label="Forename" helperText="Please add your forename" />
+  <Textfield
+    label="Forename"
+    helperText="Please add your forename"
+    useCharCounter
+    persistent />
 
 </main>

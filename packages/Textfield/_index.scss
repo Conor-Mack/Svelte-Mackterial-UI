@@ -1,1 +1,4 @@
-@import "@material/textfield/mdc-text-field.scss"
+@import "@material/textfield/mdc-text-field.scss";
+@import "./mixins.scss";
+
+@include bbmd-textfield-styles();
