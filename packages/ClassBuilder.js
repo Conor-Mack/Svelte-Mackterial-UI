@@ -33,7 +33,6 @@ export default class ClassBuilder {
             (!this.customDefaults || !this.customDefaults.includes(value))
           ) {
             //custom scss name convention = bbmd-[block | element]--[property]-[value]
-            debugger;
             return ` bbmd-${base}--${property}-${value}`;
           }
         })

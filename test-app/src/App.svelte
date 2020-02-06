@@ -45,6 +45,9 @@
   <br />
   <Textfield
     label="Forename"
+    variant="outlined"
+    fullwidth
+    textarea
     helperText="Please add your forename"
     useCharCounter
     persistent />

@@ -51,19 +51,24 @@ NOTE: Do not use mdc-line-ripple inside of mdc-text-field if you plan on using m
 
   let modifiers = [];
   let customs;
-  variant !== "standard" && (variant !== "outlined" && fullwidth)
-    ? modifiers.push(variant)
-    : (customs = { variant });
 
-  if (!label) modifiers.push("no-label");
+  if (variant == "standard" || fullwidth) {
+    customs = { variant };
+  } else {
+    modifiers.push(variant);
+  }
+
+  if (!label || fullwidth) {
+    modifiers.push("no-label");
+  }
   if (fullwidth) modifiers.push("fullwidth");
   if (disabled) modifiers.push("disabled");
   if (textarea) modifiers.push("textarea");
   if (persistent) helperClasses += ` ${cb.block}-helper-text--persistent`;
   if (validation) helperClasses += ` ${cb.block}-helper-text--validation`;
 
-  // NOTE: Do not use mdc-floating-label within mdc-text-field--fullwidth. Labels should not be included as part of the DOM structure of a full width text field.
-  let useLabel = !!label && !fullwidth;
+  let useLabel = !!label && (!fullwidth || (fullwidth && textarea));
+
   $: useNotchedOutline = variant == "outlined" || textarea;
 
   if (icon) {
@@ -78,7 +83,6 @@ NOTE: Do not use mdc-line-ripple inside of mdc-text-field if you plan on using m
 
   const blockClasses = cb.blocks({ modifiers, customs });
   const inputClasses = cb.elements("input");
-  console.log("BLOCKS", blockClasses);
 
   function focus(event) {
     instance.focus();
@@ -131,7 +135,7 @@ TODO: Implement line ripple
         class={inputClasses}
         {type}
         {required}
-        {placeholder}
+        placeholder={!!label && fullwidth ? label : placeholder}
         {minLength}
         {maxLength}
         aria-label={`Textfield ${variant}`} />
