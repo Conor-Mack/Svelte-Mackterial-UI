@@ -23,7 +23,8 @@
         background-color: var(--mdc-theme-secondary);
       }
 
-      &.mdc-text-field--outlined {
+      &.mdc-text-field--outlined,
+      &.mdc-text-field--textarea {
         @include mdc-text-field-focused-outline-color(secondary);
       }
     }

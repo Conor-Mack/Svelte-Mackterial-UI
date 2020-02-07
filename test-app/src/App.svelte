@@ -22,6 +22,11 @@
     font-weight: 100;
   }
 
+  div {
+    display: flex;
+    flex-flow: row wrap;
+  }
+
   @media (min-width: 640px) {
     main {
       max-width: none;
@@ -41,19 +46,44 @@
   <Button text="Nothing" size="large" colour="secondary" fullBleed />
 
   <h1>TextFields</h1>
-  <Textfield
-    label="Surname"
-    variant="filled"
-    helperText="Please add your surname" />
-  Full Width Check
-  <input type="checkbox" name="vehicle1" bind:checked={fullwidth} />
 
-  <br />
-  <Textfield
-    label="Forename"
-    colour="primary"
-    bind:fullwidth
-    size="large"
-    helperText="Please add your forename" />
+  <div>
+    <Textfield
+      label="Primary"
+      colour="primary"
+      helperText="Please add your forename" />
+
+    <Textfield
+      label="Secondary Filled"
+      colour="secondary"
+      variant="filled"
+      helperText="Please add your surname" />
+
+    <Textfield label="Primary Outlined" variant="outlined" />
+
+    <Textfield
+      label="Secondary Outlined"
+      variant="outlined"
+      colour="secondary" />
+
+    <Textfield
+      label="Full Width"
+      helperText="I don't use a label"
+      useCharCounter
+      fullwidth
+      persistent />
+
+    <Textfield label="Textarea" textarea />
+
+    <Textfield label="Textarea Secondary" colour="secondary" textarea />
+
+    <Textfield
+      label="Textarea Fullwidth"
+      textarea
+      fullwidth
+      useCharCounter
+      maxLength={500} />
+
+  </div>
 
 </main>

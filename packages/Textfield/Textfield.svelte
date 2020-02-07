@@ -97,6 +97,7 @@
 
 <style>
   .textfield-container {
+    padding: 8px;
     display: flex;
     flex-direction: column;
     width: 227px;
