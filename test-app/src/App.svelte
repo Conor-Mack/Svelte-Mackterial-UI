@@ -48,7 +48,7 @@
   <h1>TextFields</h1>
 
   <div>
-    <Textfield
+     <Textfield
       label="Primary"
       colour="primary"
       helperText="Please add your forename" />
@@ -63,19 +63,25 @@
 
     <Textfield
       label="Secondary Outlined"
+      icon="alarm_on"
       variant="outlined"
       colour="secondary" />
 
     <Textfield
       label="Full Width"
       helperText="I don't use a label"
+      icon="alarm_on"
       useCharCounter
       fullwidth
       persistent />
 
-    <Textfield label="Textarea" textarea />
+     <Textfield label="Textarea" textarea />
 
-    <Textfield label="Textarea Secondary" colour="secondary" textarea />
+    <Textfield
+      label="Textarea Secondary"
+      colour="secondary"
+      icon="alarm_on"
+      textarea />
 
     <Textfield
       label="Textarea Fullwidth"
@@ -84,6 +90,7 @@
       useCharCounter
       maxLength={500} />
 
-  </div>
+  </div> 
 
+  </div>
 </main>
