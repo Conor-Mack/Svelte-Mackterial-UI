@@ -5,6 +5,29 @@
   $feat-structure: mdc-feature-create-target($query, structure);
 
   .mdc-text-field {
+    &.bbmd-mdc-text-field--size-small {
+      //set small height
+      @include mdc-text-field-height(48px);
+    }
+
+    &.bbmd-mdc-text-field--size-large {
+      //set large height
+      @include mdc-text-field-height(64px);
+    }
+
+    &.bbmd-mdc-text-field--colour-secondary {
+      .mdc-floating-label--float-above {
+        color: var(--mdc-theme-secondary);
+      }
+      .mdc-line-ripple--active {
+        background-color: var(--mdc-theme-secondary);
+      }
+
+      &.mdc-text-field--outlined {
+        @include mdc-text-field-focused-outline-color(secondary);
+      }
+    }
+
     &.bbmd-mdc-text-field--variant-standard {
       @include mdc-text-field-fill-color(transparent);
       &:before {

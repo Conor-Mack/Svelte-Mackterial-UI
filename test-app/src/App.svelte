@@ -1,6 +1,9 @@
 <script>
   import { setContext } from "svelte";
   import { Button, Icon, Textfield } from "@BBMD";
+
+  let fullwidth = false;
+  $: console.log("FW", fullwidth);
 </script>
 
 <style>
@@ -38,18 +41,19 @@
   <Button text="Nothing" size="large" colour="secondary" fullBleed />
 
   <h1>TextFields</h1>
-  <!-- <Textfield
+  <Textfield
     label="Surname"
     variant="filled"
-    helperText="Please add your surname" /> -->
+    helperText="Please add your surname" />
+  Full Width Check
+  <input type="checkbox" name="vehicle1" bind:checked={fullwidth} />
+
   <br />
   <Textfield
     label="Forename"
-    variant="outlined"
-    fullwidth
-    textarea
-    helperText="Please add your forename"
-    useCharCounter
-    persistent />
+    colour="primary"
+    bind:fullwidth
+    size="large"
+    helperText="Please add your forename" />
 
 </main>
