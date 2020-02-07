@@ -43,12 +43,12 @@
     size="small" />
   <Button text="Raised" on:click={() => alert('Hi')} />
   <Button variant="outlined" text="Outlined" colour="secondary" size="small" />
-  <Button text="Nothing" size="large" colour="secondary" fullBleed />
+  <Button text="Nothing" size="large" colour="secondary" fullwidth />
 
   <h1>TextFields</h1>
 
   <div>
-     <Textfield
+    <Textfield
       label="Primary"
       colour="primary"
       helperText="Please add your forename" />
@@ -75,7 +75,7 @@
       fullwidth
       persistent />
 
-     <Textfield label="Textarea" textarea />
+    <Textfield label="Textarea" textarea />
 
     <Textfield
       label="Textarea Secondary"
@@ -90,7 +90,6 @@
       useCharCounter
       maxLength={500} />
 
-  </div> 
-
   </div>
+
 </main>
