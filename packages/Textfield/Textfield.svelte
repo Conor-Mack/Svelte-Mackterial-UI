@@ -43,7 +43,6 @@
   export let validation = false;
   export let persistent = false;
 
-  //Unique label and for regardless of same label and variant
   let id = `${label}-${variant}`;
   let helperClasses = `${cb.block}-helper-text`;
 
@@ -72,18 +71,19 @@
   if (validation) helperClasses += ` ${cb.block}-helper-text--validation`;
 
   let useLabel = !!label && (!fullwidth || (fullwidth && textarea));
+  let useIcon = !!icon && (!textarea && !fullwidth);
 
   $: useNotchedOutline = variant == "outlined" || textarea;
 
-  if (icon) {
+  if (useIcon) {
     setContext("BBMD:icon:context", "text-field");
     trailingIcon
       ? modifiers.push("with-trailing-icon")
       : modifiers.push("with-leading-icon");
   }
 
-  $: renderLeadingIcon = !!icon && !trailingIcon;
-  $: renderTrailingIcon = !!icon && trailingIcon;
+  $: renderLeadingIcon = useIcon && !trailingIcon;
+  $: renderTrailingIcon = useIcon && trailingIcon;
 
   const blockClasses = cb.blocks({ modifiers, customs });
   const inputClasses = cb.elements("input");

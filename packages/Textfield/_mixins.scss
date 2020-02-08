@@ -16,8 +16,10 @@
     }
 
     &.bbmd-mdc-text-field--colour-secondary {
-      .mdc-floating-label--float-above {
-        color: var(--mdc-theme-secondary);
+      &.mdc-text-field--focused {
+        .mdc-floating-label--float-above {
+          color: var(--mdc-theme-secondary);
+        }
       }
       .mdc-line-ripple--active {
         background-color: var(--mdc-theme-secondary);
@@ -39,11 +41,6 @@
       @include mdc-feature-targets($feat-structure) {
         padding-right: 0px;
         padding-left: 0px;
-      }
-    }
-    > .mdc-text-field__input {
-      @include mdc-feature-targets($feat-structure) {
-        padding-bottom: 0px;
       }
     }
   }
