@@ -3,7 +3,6 @@
   import { Button, Icon, Textfield } from "@BBMD";
 
   let fullwidth = false;
-  $: console.log("FW", fullwidth);
 </script>
 
 <style>
@@ -41,9 +40,9 @@
     text="Link Me"
     colour="secondary"
     size="small" />
-  <Button text="Raised" on:click={() => alert('Hi')} />
+  <!-- <Button text="Raised" on:click={() => alert('Hi')} />
   <Button variant="outlined" text="Outlined" colour="secondary" size="small" />
-  <Button text="Nothing" size="large" colour="secondary" fullwidth />
+  <Button text="Nothing" size="large" colour="secondary" fullwidth /> -->
 
   <h1>TextFields</h1>
 

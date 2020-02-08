@@ -18,17 +18,22 @@
   export let text = "";
   export let disabled = false;
 
+  let modifiers = {};
+  let customs = { size, colour };
+
+  if (!href) modifiers.variant = variant;
+
+  let props = { modifiers, customs };
+
+  let blockClasses = cb.build({ props });
+  const labelClass = cb.elem("label");
+
   $: if (icon) {
     setContext("BBMD:icon:context", "button");
   }
 
   $: renderLeadingIcon = !!icon && !trailingIcon;
   $: renderTrailingIcon = !!icon && trailingIcon;
-
-  let blockClasses = cb.blocks({
-    modifiers: !href ? [variant] : null,
-    customs: { size, colour }
-  });
 </script>
 
 <style>
@@ -39,7 +44,7 @@
 
 {#if href}
   <a class={blockClasses} {href} on:click>
-    <span class={cb.elements('label')}>{text}</span>
+    <span class={labelClass}>{text}</span>
   </a>
 {:else}
   <button
@@ -51,7 +56,7 @@
     {#if renderLeadingIcon}
       <Icon {icon} />
     {/if}
-    <span class={cb.elements('label')}>{text}</span>
+    <span class={labelClass}>{text}</span>
     {#if renderTrailingIcon}
       <Icon {icon} />
     {/if}
