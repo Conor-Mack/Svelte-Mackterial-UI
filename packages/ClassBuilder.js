@@ -22,7 +22,7 @@ export default class ClassBuilder {
     return this.build({ elementName });
   }
 
-  //use if a different base is neeeded to the block
+  //use if a different base is needed than whats defined by this.block
   debase(base, elementProps) {
     if (!elementProps) return base;
     return this._handleProps(base, elementProps);

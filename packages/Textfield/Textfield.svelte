@@ -51,7 +51,7 @@
   if (variant == "standard" || fullwidth) {
     customs = { ...customs, variant };
   } else {
-    modifiers.variant = variant;
+    modifiers = { ...modifiers, variant };
   }
 
   if (!textarea && size !== "medium") {

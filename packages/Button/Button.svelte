@@ -21,7 +21,7 @@
   let modifiers = {};
   let customs = { size, colour };
 
-  if (!href) modifiers.variant = variant;
+  if (!href) modifiers = { variant };
 
   let props = { modifiers, customs };
 
