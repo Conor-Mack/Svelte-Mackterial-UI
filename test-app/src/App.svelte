@@ -1,6 +1,6 @@
 <script>
   import { setContext } from "svelte";
-  import { Button, Icon, Textfield } from "@BBMD";
+  import { Button, Icon, Textfield, H3 } from "@BBMD";
 
   let fullwidth = false;
 </script>
@@ -13,13 +13,13 @@
     margin: 0 auto;
     border: 1px solid red;
   }
-
+  /* 
   h1 {
     color: #ff3e00;
     text-transform: uppercase;
     font-size: 4em;
     font-weight: 100;
-  }
+  } */
 
   div {
     display: flex;
@@ -40,11 +40,11 @@
     text="Link Me"
     colour="secondary"
     size="small" />
-  <!-- <Button text="Raised" on:click={() => alert('Hi')} />
+  <Button text="Raised" on:click={() => alert('Hi')} />
   <Button variant="outlined" text="Outlined" colour="secondary" size="small" />
-  <Button text="Nothing" size="large" colour="secondary" fullwidth /> -->
+  <Button text="Nothing" size="large" colour="secondary" fullwidth />
 
-  <h1>TextFields</h1>
+  <H3 text="TextFields" />
 
   <div>
     <Textfield
