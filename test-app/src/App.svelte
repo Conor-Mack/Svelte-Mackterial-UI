@@ -1,6 +1,6 @@
 <script>
   import { setContext } from "svelte";
-  import { Button, Icon, Textfield, H3 } from "@BBMD";
+  import { Button, Icon, Textfield, H3, Checkbox } from "@BBMD";
 
   let fullwidth = false;
 </script>
@@ -88,6 +88,13 @@
       fullwidth
       useCharCounter
       maxLength={500} />
+
+  </div>
+
+  <H3 text="Checkboxes" />
+
+  <div>
+    <Checkbox id="test-check" label="I am working" />
 
   </div>
 
