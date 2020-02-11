@@ -5,24 +5,23 @@
   import ClassBuilder from "../ClassBuilder.js";
   import { MDCCheckbox } from "@material/checkbox";
 
-  let store;
-  const unsubscribe = fieldStore.subscribe(s => (store = s));
-  $: console.log("CHECK STORE", store);
-
   export let id = "";
   export let label = "";
   export let disabled = false;
+  export let alignEnd = false;
+  export let indeterminate = false;
 
-  let fieldElement = null;
+  let instance = null;
   let checkbox = null;
 
   onMount(() => {
-    if (!!checkbox) fieldElement = new MDCCheckbox(checkbox);
-    let fieldStore = getContext("BBMD:field-element");
-    fieldStore.setInput(fieldElement);
+    if (!!checkbox) {
+      instance = new MDCCheckbox(checkbox);
+      let fieldStore = getContext("BBMD:field-element");
+      fieldStore.setInput(instance);
+      instance.indeterminate = indeterminate;
+    }
   });
-
-  onDestroy(unsubscribe);
 
   const cb = new ClassBuilder("checkbox");
   let modifiers = { disabled };
@@ -31,7 +30,9 @@
   const blockClass = cb.build({ props });
 </script>
 
-<Formfield let:fieldElement {label} {id}>
+<!-- TODO: Customizing Colour and Density - What level of customization for these things does Budibase need here? -->
+
+<Formfield {label} {id} {alignEnd}>
   <div bind:this={checkbox} class={blockClass}>
     <input type="checkbox" class={cb.elem`native-control`} {id} {disabled} />
     <div class={cb.elem`background`}>

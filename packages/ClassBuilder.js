@@ -58,13 +58,17 @@ export default class ClassBuilder {
 
           if (valueType == "string" || valueType == "number") {
             return isCustom
-              ? ` ${classBase}--${property}-${value}`
+              ? ` ${classBase}--${this._convertCamel(property)}-${value}`
               : ` ${classBase}--${value}`;
           } else if (valueType == "boolean") {
-            return ` ${classBase}--${property}`;
+            return ` ${classBase}--${this._convertCamel(property)}`;
           }
         }
       })
       .join("");
+  }
+
+  _convertCamel(str) {
+    return str.replace(/[A-Z]/g, match => `-${match.toLowerCase()}`);
   }
 }

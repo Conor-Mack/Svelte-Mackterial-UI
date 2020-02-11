@@ -1,17 +1,25 @@
 <script>
   import "@material/form-field/mdc-form-field.scss";
+  import ClassBuilder from "../ClassBuilder.js";
   import { fieldStore } from "./FormfieldStore.js";
   import { MDCFormField } from "@material/form-field";
   import { onMount, onDestroy, setContext } from "svelte";
 
-  let store = "";
+  const cb = new ClassBuilder("form-field");
+
+  let store;
   const unsubscribe = fieldStore.subscribe(s => (store = s));
-  // $: console.log("STORE", store);
 
   export let id = "";
   export let label = "";
+  export let alignEnd = false;
 
   let formField = null;
+
+  let modifiers = { alignEnd };
+  let props = { modifiers };
+
+  let blockClasses = cb.build({ props });
 
   onMount(() => {
     if (!!formField) fieldStore.set(new MDCFormField(formField));
@@ -21,7 +29,7 @@
   onDestroy(unsubscribe);
 </script>
 
-<div bind:this={formField} class="mdc-form-field">
+<div bind:this={formField} class={blockClasses}>
   <slot />
   <label for={id}>{label}</label>
 </div>
