@@ -1,21 +1,60 @@
 <script>
+  import { setContext } from "svelte";
+  import { Radiobutton } from "../Radiobutton";
+  import { Checkbox } from "../Checkbox";
   import ClassBuilder from "../ClassBuilder.js";
 
   const cb = new ClassBuilder("list-item");
 
+  export let onClick = item => {};
+
   export let item = null;
   export let useDoubleLine = false;
+  export let inputElement = null; //radio or checkbox
+  console.log("input", inputElement);
+
+  $: if (!!inputElement) {
+    setContext("BBMD:input:context", cb.elem`meta`);
+  }
 
   $: modifiers = { selected: item.selected };
   $: props = { modifiers };
-  $: listClass = cb.build({ props });
+  $: listItemClass = cb.build({ props });
+
+  $: useSecondaryText =
+    typeof item.text === "object" && "secondary" in item.text;
 </script>
 
-<li class={listClass} tabindex="0">
+<li
+  class={listItemClass}
+  role="option"
+  aria-selected={item.selected}
+  tabindex="0"
+  on:click={onClick}>
+  {#if item.leadingIcon}
+    <span class="mdc-list-item__graphic material-icons" aria-hidden="true">
+      {item.leadingIcon}
+    </span>
+  {/if}
   <span class={cb.elem`text`}>
     {#if useDoubleLine}
-      <span class={cb.elem`primary-text`}>{item.primary}</span>
-      <span class={cb.elem`secondary-text`}>{item.secondary}</span>
-    {:else}{item}{/if}
+      <span class={cb.elem`primary-text`}>{item.text.primary}</span>
+      {#if useSecondaryText}
+        <span class={cb.elem`secondary-text`}>{item.text.secondary}</span>
+      {/if}
+    {:else}{item.text}{/if}
   </span>
+
+  {#if inputElement}
+    {#if inputElement === 'radiobutton'}
+      <Radiobutton selected={item.selected} />
+    {:else if inputElement === 'checkbox'}
+      <Checkbox checked={item.selected} />
+    {/if}
+  {:else if item.trailingIcon}
+    <!-- TODO: Adapt label to accept class prop to handle this. Context is insufficient -->
+    <span class="mdc-list-item__meta material-icons" aria-hidden="true">
+      {item.trailingIcon}
+    </span>
+  {/if}
 </li>

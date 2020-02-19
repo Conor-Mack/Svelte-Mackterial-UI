@@ -8,3 +8,4 @@ export * from "./Typography";
 export { Checkbox, CheckboxGroup } from "./Checkbox";
 export { Radiobutton, RadiobuttonGroup } from "./Radiobutton";
 export { Datatable } from "./Datatable";
+export { List } from "./List";

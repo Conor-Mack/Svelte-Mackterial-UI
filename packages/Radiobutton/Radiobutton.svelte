@@ -9,7 +9,7 @@
   export let id = "";
   export let label = "";
   export let names = "radios";
-  export let checked = false;
+  export let selected = false;
   export let disabled = false;
   export let alignEnd = false;
 
@@ -24,9 +24,12 @@
     }
   });
 
+  let extras = "";
+  extras = [getContext("BBMD:input:context")];
+
   const cb = new ClassBuilder("radio");
   let modifiers = { disabled };
-  let props = { modifiers };
+  let props = { modifiers, extras };
 
   const blockClass = cb.build({ props });
 </script>
@@ -38,7 +41,7 @@
       class={cb.elem`native-control`}
       type="radio"
       {names}
-      {checked}
+      {selected}
       {disabled}
       on:click={onClick} />
     <div class={cb.elem`background`}>

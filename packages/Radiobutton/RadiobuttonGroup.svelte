@@ -15,8 +15,8 @@
   let selected = null;
 
   function handleOnClick(item) {
-    if (!!selected) selected.checked = false;
-    item.checked = true;
+    if (!!selected) selected.selected = false;
+    item.selected = true;
     selected = item;
     items = items;
     onChange(selected);
@@ -65,7 +65,7 @@
           {name}
           {alignEnd}
           label={item.label}
-          checked={item.checked}
+          selected={item.selected}
           onClick={() => handleOnClick(item)} />
       </div>
     {/each}

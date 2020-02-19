@@ -9,7 +9,8 @@
     CheckboxGroup,
     Radiobutton,
     RadiobuttonGroup,
-    Datatable
+    Datatable,
+    List
   } from "@BBMD";
 
   let fullwidth = false;
@@ -21,6 +22,22 @@
     { label: "Curry", indeterminate },
     { label: "Chips", checked },
     { label: "Garlic Bread" }
+  ];
+
+  let listItems = [
+    { text: { primary: "Curry", secondary: "Chicken or Beef" }, value: 0 },
+    {
+      text: { primary: "Pastie", secondary: "Bap with Mayo" },
+      value: 1,
+      selected: true
+    },
+    { text: { primary: "Fish", secondary: "Salmon or Cod" }, value: 2 }
+  ];
+
+  let singleListItems = [
+    { text: "Curry", value: 0 },
+    { text: "Pastie", value: 0 },
+    { text: "Fish", value: 0 }
   ];
 </script>
 
@@ -57,7 +74,11 @@
 <main>
 
   <div>
-    <Datatable />
+    <List
+      items={singleListItems}
+      singleSelection={false}
+      inputElement="radiobutton"
+      onSelect={selectedItems => console.log('SELECTED ITEMS', selectedItems)} />
   </div>
 
   <div>

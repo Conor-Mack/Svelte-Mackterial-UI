@@ -1,2 +1,2 @@
 import "./_style.scss";
-import List from "./List.svelte";
+export { default as List } from "./List.svelte";
