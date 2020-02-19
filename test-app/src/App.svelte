@@ -8,7 +8,8 @@
     Checkbox,
     CheckboxGroup,
     Radiobutton,
-    RadiobuttonGroup
+    RadiobuttonGroup,
+    Datatable
   } from "@BBMD";
 
   let fullwidth = false;
@@ -27,7 +28,6 @@
   main {
     display: flex;
     flex-direction: column;
-    text-align: center;
     padding: 1em;
     width: 800px;
     margin: 0 auto;
@@ -55,6 +55,10 @@
 </style>
 
 <main>
+
+  <div>
+    <Datatable />
+  </div>
 
   <div>
     <H3 text="Checkboxes" />

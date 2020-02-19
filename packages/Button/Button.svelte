@@ -6,7 +6,7 @@
 
   const cb = new ClassBuilder("button", ["primary", "medium"]);
 
-  export let variant = "raised";
+  export let variant = "unelevated";
   export let colour = "primary";
   export let size = "medium";
 
