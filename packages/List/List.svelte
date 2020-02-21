@@ -15,7 +15,7 @@
   export let variant = "";
   //items: [{text: string | {primary: string, secondary: string}, value: any, selected: bool}...n]
   export let items = [];
-  export let singleSelection = true;
+  export let singleSelection = false;
   export let inputElement = null;
 
   onMount(() => {
@@ -32,7 +32,7 @@
   });
 
   function handleSelectedItem(item) {
-    if (singleSelection) {
+    if (singleSelection || inputElement === "radiobutton") {
       items.forEach(i => {
         if (i.selected) i.selected = false;
       });

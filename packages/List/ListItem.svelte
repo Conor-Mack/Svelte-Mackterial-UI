@@ -10,14 +10,13 @@
 
   export let item = null;
   export let useDoubleLine = false;
-  export let inputElement = null; //radio or checkbox
-  console.log("input", inputElement);
+  export let inputElement = null; //radiobutton or checkbox
 
   $: if (!!inputElement) {
-    setContext("BBMD:input:context", cb.elem`meta`);
+    setContext("BBMD:input:context", "list-item");
   }
 
-  $: modifiers = { selected: item.selected };
+  $: modifiers = { selected: !inputElement ? item.selected : null };
   $: props = { modifiers };
   $: listItemClass = cb.build({ props });
 
@@ -47,7 +46,7 @@
 
   {#if inputElement}
     {#if inputElement === 'radiobutton'}
-      <Radiobutton selected={item.selected} />
+      <Radiobutton checked={item.selected} />
     {:else if inputElement === 'checkbox'}
       <Checkbox checked={item.selected} />
     {/if}

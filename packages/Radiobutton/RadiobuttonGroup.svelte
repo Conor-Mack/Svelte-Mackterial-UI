@@ -65,7 +65,7 @@
           {name}
           {alignEnd}
           label={item.label}
-          selected={item.selected}
+          checked={item.selected || false}
           onClick={() => handleOnClick(item)} />
       </div>
     {/each}

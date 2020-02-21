@@ -9,23 +9,30 @@
   export let id = "";
   export let label = "";
   export let names = "radios";
-  export let selected = false;
+  export let checked = false;
   export let disabled = false;
   export let alignEnd = false;
 
   let instance = null;
   let radiobtn = null;
 
+  let context = getContext("BBMD:input:context");
+
   onMount(() => {
     if (!!radiobtn) {
       instance = new MDCRadio(radiobtn);
-      let fieldStore = getContext("BBMD:field-element");
-      fieldStore.setInput(instance);
+      if (context !== "list-item") {
+        let fieldStore = getContext("BBMD:field-element");
+        fieldStore.setInput(instance);
+      }
     }
   });
 
-  let extras = "";
-  extras = [getContext("BBMD:input:context")];
+  let extras = null;
+
+  if (context === "list-item") {
+    extras = ["mdc-list-item__meta"];
+  }
 
   const cb = new ClassBuilder("radio");
   let modifiers = { disabled };
@@ -34,14 +41,32 @@
   const blockClass = cb.build({ props });
 </script>
 
-<Formfield {id} {label} {alignEnd}>
+{#if context !== 'list-item'}
+  <Formfield {id} {label} {alignEnd}>
+    <div class={blockClass}>
+      <input
+        {id}
+        class={cb.elem`native-control`}
+        type="radio"
+        {names}
+        {checked}
+        {disabled}
+        on:click={onClick} />
+      <div class={cb.elem`background`}>
+        <div class={cb.elem`outer-circle`} />
+        <div class={cb.elem`inner-circle`} />
+      </div>
+      <div class={cb.elem`ripple`} />
+    </div>
+  </Formfield>
+{:else}
   <div class={blockClass}>
     <input
       {id}
       class={cb.elem`native-control`}
       type="radio"
       {names}
-      {selected}
+      {checked}
       {disabled}
       on:click={onClick} />
     <div class={cb.elem`background`}>
@@ -50,4 +75,4 @@
     </div>
     <div class={cb.elem`ripple`} />
   </div>
-</Formfield>
+{/if}

@@ -25,7 +25,12 @@
   ];
 
   let listItems = [
-    { text: { primary: "Curry", secondary: "Chicken or Beef" }, value: 0 },
+    {
+      text: { primary: "Curry", secondary: "Chicken or Beef" },
+      value: 0,
+      leadingIcon: "alarm_on",
+      trailingIcon: "inbox"
+    },
     {
       text: { primary: "Pastie", secondary: "Bap with Mayo" },
       value: 1,
@@ -35,7 +40,7 @@
   ];
 
   let singleListItems = [
-    { text: "Curry", value: 0 },
+    { text: "Curry", value: 0, trailingIcon: "inbox" },
     { text: "Pastie", value: 0 },
     { text: "Fish", value: 0 }
   ];
@@ -46,7 +51,7 @@
     display: flex;
     flex-direction: column;
     padding: 1em;
-    width: 800px;
+    width: 700px;
     margin: 0 auto;
     border: 1px solid red;
   }
@@ -75,9 +80,8 @@
 
   <div>
     <List
-      items={singleListItems}
-      singleSelection={false}
-      inputElement="radiobutton"
+      items={listItems}
+      variant="two-line"
       onSelect={selectedItems => console.log('SELECTED ITEMS', selectedItems)} />
   </div>
 
