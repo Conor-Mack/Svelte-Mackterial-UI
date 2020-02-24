@@ -10,7 +10,8 @@
     Radiobutton,
     RadiobuttonGroup,
     Datatable,
-    List
+    List,
+    Menu
   } from "@BBMD";
 
   let fullwidth = false;
@@ -27,9 +28,7 @@
   let listItems = [
     {
       text: { primary: "Curry", secondary: "Chicken or Beef" },
-      value: 0,
-      leadingIcon: "alarm_on",
-      trailingIcon: "inbox"
+      value: 0
     },
     {
       text: { primary: "Pastie", secondary: "Bap with Mayo" },
@@ -40,7 +39,7 @@
   ];
 
   let singleListItems = [
-    { text: "Curry", value: 0, trailingIcon: "inbox" },
+    { text: "Curry", value: 0 },
     { text: "Pastie", value: 0 },
     { text: "Fish", value: 0 }
   ];
@@ -79,10 +78,7 @@
 <main>
 
   <div>
-    <List
-      items={listItems}
-      variant="two-line"
-      onSelect={selectedItems => console.log('SELECTED ITEMS', selectedItems)} />
+    <Menu items={singleListItems} />
   </div>
 
   <div>

@@ -1,5 +1,5 @@
 <script>
-  import { setContext } from "svelte";
+  import { onMount, getContext } from "svelte";
   import { Radiobutton } from "../Radiobutton";
   import { Checkbox } from "../Checkbox";
   import ClassBuilder from "../ClassBuilder.js";
@@ -12,11 +12,23 @@
   export let useDoubleLine = false;
   export let inputElement = null; //radiobutton or checkbox
 
+  let role = "option";
+
+  onMount(() => {
+    let context = getContext("BBMD:list:context");
+    if (context === "menu") {
+      role = "menuitem";
+    }
+  });
+
   $: if (!!inputElement) {
     setContext("BBMD:input:context", "list-item");
   }
 
-  $: modifiers = { selected: !inputElement ? item.selected : null };
+  $: modifiers = {
+    selected: !inputElement ? item.selected : null,
+    disabled: item.disabled
+  };
   $: props = { modifiers };
   $: listItemClass = cb.build({ props });
 
@@ -46,9 +58,9 @@
 
   {#if inputElement}
     {#if inputElement === 'radiobutton'}
-      <Radiobutton checked={item.selected} />
+      <Radiobutton checked={item.selected} disabled={item.disabled} />
     {:else if inputElement === 'checkbox'}
-      <Checkbox checked={item.selected} />
+      <Checkbox checked={item.selected} disabled={item.disabled} />
     {/if}
   {:else if item.trailingIcon}
     <!-- TODO: Adapt label to accept class prop to handle this. Context is insufficient -->
