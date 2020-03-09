@@ -11,7 +11,9 @@
     RadiobuttonGroup,
     Datatable,
     List,
-    Menu
+    Menu,
+    DatePicker,
+    IconButton
   } from "@BBMD";
 
   let fullwidth = false;
@@ -43,6 +45,12 @@
     { text: "Pastie", value: 0 },
     { text: "Fish", value: 0 }
   ];
+
+  let open = false;
+
+  function toggleDatePicker() {
+    open = !open;
+  }
 </script>
 
 <style>
@@ -68,6 +76,10 @@
     flex-flow: column nowrap;
   }
 
+  .dp {
+    align-items: flex-start;
+  }
+
   @media (min-width: 640px) {
     main {
       max-width: none;
@@ -78,7 +90,15 @@
 <main>
 
   <div>
-    <Menu items={singleListItems} />
+    <IconButton
+      onClick={() => alert`Happenin`}
+      icon="calendar_today"
+      size="medium" />
+  </div>
+
+  <div class="dp" on:click={toggleDatePicker}>
+    <DatePicker {open} />
+    <button on:click={() => (open = true)}>Open</button>
   </div>
 
   <div>
@@ -99,6 +119,8 @@
       alignEnd
       onChange={s => console.log(s)} />
   </div>
+
+  <Icon icon="chevron_left" />
 
 </main>
 <!-- 

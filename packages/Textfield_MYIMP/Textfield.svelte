@@ -6,25 +6,21 @@
   import ClassBuilder from "../ClassBuilder.js";
   import NotchedOutline from "../Common/NotchedOutline.svelte";
   import FloatingLabel from "../Common/FloatingLabel.svelte";
-  import HelperText from "./HelperText.svelte";
-  import CharacterCounter from "./CharacterCounter.svelte";
   import Icon from "../Common/Icon.svelte";
+  import IconButton from "../IconButton";
 
   const cb = new ClassBuilder("text-field", ["primary", "medium"]);
 
   let tf = null;
-  export let tfHeight = null;
   let tfInstance = null;
 
   onMount(() => {
     if (!!tf) tfInstance = new MDCTextField(tf);
     return () => {
-      !!tfInstance && tf.tfInstance && tf.tfInstance.destroy();
+      !!tfInstance && tf.tfInstance.destroy();
       tf = null;
     };
   });
-
-  export let onChange = text => {};
 
   export let label = "";
   export let variant = "standard"; //outlined | filled | standard
@@ -34,22 +30,24 @@
   export let size = "medium";
   export let type = "text"; //text or password
   export let required = false;
-  export let minLength = null;
-  export let maxLength = null;
+  export let minLength = 0;
+  export let maxLength = 100;
+  export let useCharCounter = false;
   export let helperText = "";
   export let errorText = "";
   export let placeholder = "";
   export let icon = "";
+  export let useIconButton = false;
+  export let iconButtonClick = () => {};
   export let trailingIcon = false;
   export let textarea = false;
   export let rows = 4;
   export let cols = 40;
   export let validation = false;
   export let persistent = false;
-  export let value;
-  export let _bb;
 
   let id = `${label}-${variant}`;
+  debugger;
 
   let modifiers = { fullwidth, disabled, textarea };
   let customs = { colour };
@@ -68,18 +66,23 @@
     modifiers = { ...modifiers, noLabel: "no-label" };
   }
 
+  let helperClasses = cb.debase(`${cb.block}-helper-text`, {
+    modifiers: { persistent, validation }
+  });
+
   let useLabel = !!label && (!fullwidth || (fullwidth && textarea));
-  let useIcon = !!icon && !textarea && !fullwidth;
+  let useIcon = !!icon && (!textarea && !fullwidth);
+
+  $: useNotchedOutline = variant == "outlined" || textarea;
 
   if (useIcon) {
+    setContext("BBMD:icon:context", "text-field");
     let iconClass = trailingIcon ? "with-trailing-icon" : "with-leading-icon";
     modifiers = { ...modifiers, iconClass };
   }
 
-  $: useNotchedOutline = variant == "outlined" || textarea;
   $: renderLeadingIcon = useIcon && !trailingIcon;
   $: renderTrailingIcon = useIcon && trailingIcon;
-  $: safeMaxLength = maxLength <= 0 ? undefined : maxLength;
 
   let props = { modifiers, customs };
   const blockClasses = cb.build({ props });
@@ -89,15 +92,6 @@
 
   function focus(event) {
     tfInstance.focus();
-  }
-
-  function changed(e) {
-    const val = e.target.value;
-    value = val;
-    if (_bb.isBound(_bb.props.value)) {
-      _bb.setStateFromBinding(_bb.props.value, val);
-    }
-    _bb.call(onChange, val);
   }
 </script>
 
@@ -119,9 +113,11 @@ TODO:Needs error handling - this will depend on how Budibase handles errors
  -->
 
 <div class="textfield-container" class:fullwidth>
-  <div bind:this={tf} bind:clientHeight={tfHeight} class={blockClasses}>
+  <div bind:this={tf} class={blockClasses}>
     {#if textarea}
-      <CharacterCounter />
+      {#if useCharCounter}
+        <div class="mdc-text-field-character-counter">{renderMaxLength}</div>
+      {/if}
       <textarea
         {id}
         class={inputClasses}
@@ -132,28 +128,34 @@ TODO:Needs error handling - this will depend on how Budibase handles errors
         {required}
         {placeholder}
         {minLength}
-        maxLength={safeMaxLength}
-        {value}
-        on:change={changed} />
+        {maxLength}
+        on:change />
     {:else}
       {#if renderLeadingIcon}
-        <Icon context="text-field" {icon} />
+        {#if useIconButton}
+          <IconButton {icon} onClick={iconButtonClick} {disabled} />
+        {:else}
+          <Icon {icon} />
+        {/if}
       {/if}
       <input
         {id}
         {disabled}
+        on:focus={focus}
         class={inputClasses}
         {type}
         {required}
         placeholder={!!label && fullwidth ? label : placeholder}
         {minLength}
-        maxLength={safeMaxLength}
-        {value}
+        {maxLength}
         aria-label={`Textfield ${variant}`}
-        on:focus={focus}
-        on:input={changed} />
+        on:change />
       {#if renderTrailingIcon}
-        <Icon context="text-field" {icon} />
+        {#if useIconButton}
+          <IconButton {icon} onClick={iconButtonClick} {disabled} />
+        {:else}
+          <Icon {icon} />
+        {/if}
       {/if}
       {#if variant !== 'outlined'}
         <div class="mdc-line-ripple" />
@@ -169,10 +171,11 @@ TODO:Needs error handling - this will depend on how Budibase handles errors
       <FloatingLabel forInput={id} text={label} />
     {/if}
   </div>
-  <HelperText
-    {persistent}
-    {validation}
-    {errorText}
-    {helperText}
-    useCharCounter={!!maxLength && !textarea} />
+  <!-- TODO: Split to own component? -->
+  <div class="mdc-text-field-helper-line">
+    <div class={helperClasses}>{!!errorText ? errorText : helperText}</div>
+    {#if useCharCounter && !textarea}
+      <div class="mdc-text-field-character-counter">{renderMaxLength}</div>
+    {/if}
+  </div>
 </div>

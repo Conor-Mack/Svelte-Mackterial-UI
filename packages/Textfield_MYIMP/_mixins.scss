@@ -6,22 +6,23 @@
 
   .mdc-text-field {
     &.bbmd-mdc-text-field--size-small {
+      //set small height
       @include mdc-text-field-height(48px);
     }
 
     &.bbmd-mdc-text-field--size-large {
+      //set large height
       @include mdc-text-field-height(64px);
     }
 
     &.bbmd-mdc-text-field--colour-secondary {
       &.mdc-text-field--focused {
         .mdc-floating-label--float-above {
-          @include mdc-floating-label-ink-color(secondary)
-
+          color: var(--mdc-theme-secondary);
         }
       }
       .mdc-line-ripple--active {
-        @include mdc-line-ripple-color(secondary);
+        background-color: var(--mdc-theme-secondary);
       }
 
       &.mdc-text-field--outlined,

@@ -1,6 +1,6 @@
 <script>
   import { setContext, getContext } from "svelte";
-  import Icon from "../Icon.svelte";
+  import Icon from "../Common/Icon.svelte";
   import ripple from "../Ripple.js";
   import ClassBuilder from "../ClassBuilder.js";
 
