@@ -90,6 +90,7 @@
 
   <div class="dp" on:click={toggleDatePicker}>
     <DatePicker {open} />
+    <button on:click={() => (open = true)}>Open</button>
   </div>
 
   <div>
