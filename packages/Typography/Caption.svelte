@@ -1,5 +1,5 @@
 <script>
-  export let text = ""
+  export let text = "";
 </script>
 
-<div class="mdc-typography--caption">{text}</div>
+<span class="mdc-typography--caption">{text}</span>

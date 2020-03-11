@@ -11,3 +11,4 @@ export { Datatable } from "./Datatable";
 export { List } from "./List";
 export { Menu } from "./Menu";
 export { DatePicker } from "./DatePicker";
+export { IconButton } from "./IconButton";

@@ -4,6 +4,8 @@
     startOfMonth,
     endOfMonth,
     getDate,
+    getMonth,
+    getYear,
     addMonths,
     subMonths,
     format
@@ -11,13 +13,19 @@
   import { MDCMenu } from "@material/menu";
   import { Textfield } from "../Textfield";
   import Icon from "../Common/Icon.svelte";
+  import ripple from "../Ripple.js";
+  import { Body1, Body2, Caption } from "../Typography";
 
   let textFieldHeight = null;
   let menu;
   let instance;
 
   let daysArr = [];
+  let navDate = new Date();
+  const weekdayMap = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
+
   export let date = new Date();
+  export let open = true;
 
   onMount(() => {
     if (!!menu) {
@@ -27,33 +35,42 @@
     }
   });
 
+  function selectDate(dayOfMonth) {
+    let month = getMonth(navDate);
+    let year = getYear(navDate);
+    date = new Date(year, month, dayOfMonth);
+  }
+
   function addMonth() {
-    //add a month to date
-    date = addMonths(date, 1);
+    navDate = addMonths(navDate, 1);
   }
 
   function subtractMonth() {
-    //subtract month from date
-    date = subMonths(date, 1);
+    navDate = subMonths(navDate, 1);
   }
 
-  function onMenuToggle() {
+  function openCalendar() {
     instance.open = true;
   }
 
-  $: monthEnd = endOfMonth(date).getDate();
-  $: monthBegin = startOfMonth(date).getDay();
-  $: dayStart = monthBegin + 1; //1 = sunday
-  $: monthAndYear = format(date, "MMMM y");
+  $: dateMonthEnds = endOfMonth(navDate).getDate();
+  $: dateMonthBegins = startOfMonth(navDate).getDay();
+  $: dayStart = dateMonthBegins + 1; //1 = sunday
+  $: monthAndYear = format(navDate, "MMMM y");
   $: selectedDate = format(date, "dd/MM/yyyy");
-  $: for (let d = 1; d <= monthEnd; d++) {
+  $: dayOfSelectedDate = getDate(date);
+  $: for (let d = 1; d <= dateMonthEnds; d++) {
     if (d === 1) {
       daysArr = [d];
     } else {
       daysArr = [...daysArr, d];
     }
   }
-  $: rowRepeater = monthBegin > 5 && daysArr[daysArr.length - 1] > 30 ? 6 : 5;
+  $: rowRepeater =
+    dateMonthBegins > 5 && daysArr[daysArr.length - 1] > 30 ? 6 : 5;
+  $: sameMonthAndYear =
+    getMonth(date) === getMonth(navDate) && getYear(date) === getYear(navDate);
+  debugger;
 </script>
 
 <style>
@@ -66,6 +83,8 @@
   .month-picker {
     display: grid;
     grid-template-columns: 20px 1fr 20px;
+    justify-content: center;
+    align-items: center;
   }
 
   .month-picker > span {
@@ -80,7 +99,7 @@
   }
 
   .calendar-container > div {
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 
   .week-days {
@@ -93,26 +112,28 @@
     grid-template-columns: repeat(7, 1fr);
   }
 
+  .centreText {
+    text-align: center;
+  }
+
   span {
-    justify-self: center;
-    align-self: center;
+    margin: auto;
   }
 </style>
 
 <!-- 
-
-  TODO: Add hover and ripple effect to icon chevrons
-  TODO: Add hover, ripple and active effect to days
-  TODO: Add MD typography classes to all text
+  TODO: Add trailing icon button on textfield that is clickable
   TODO: Add transition effects to toggling of calendar
-  TODO: Add trailing icon on textfield that is clickable
-
+  TODO: Bug - August 2020 has too many rows. find out why
+  TODO: Bug - make out transition of date bg colour instantaneous
  -->
 <div class="mdc-menu-surface--anchor">
   <Textfield
     bind:tfHeight={textFieldHeight}
     value={selectedDate}
     trailingIcon={true}
+    useIconButton={true}
+    iconButtonClick={openCalendar}
     icon="calendar_today"
     label="Select Date" />
 
@@ -125,29 +146,36 @@
         <span>
           <Icon icon="chevron_left" onClick={subtractMonth} />
         </span>
-        <span>{monthAndYear}</span>
+        <div class="centreText">
+          <Body1 text={monthAndYear} />
+        </div>
         <span>
           <Icon icon="chevron_right" onClick={addMonth} />
         </span>
       </div>
       <div class="week-days">
-        <span>Su</span>
-        <span>Mo</span>
-        <span>Tu</span>
-        <span>We</span>
-        <span>Th</span>
-        <span>Fr</span>
-        <span>Sa</span>
+        {#each weekdayMap as day, i}
+          <div class="centreText">
+            <Caption text={day} />
+          </div>
+        {/each}
       </div>
       <div
         class="day-picker"
         style={`grid-template-rows: repeat(${rowRepeater}, 40px)`}>
         {#each daysArr as day, i}
-          {#if i === 0}
-            <span style={`grid-column-start: ${monthBegin}`}>{day}</span>
-          {:else}
-            <span>{day}</span>
-          {/if}
+          <div
+            use:ripple
+            on:click={() => selectDate(day)}
+            class={`bbmd-day ${dayOfSelectedDate === day && sameMonthAndYear ? 'selected' : ''}`}>
+            {#if i === 0}
+              <div style={`grid-column-start: ${dateMonthBegins}`}>
+                <Body2 text={day} />
+              </div>
+            {:else}
+              <Body2 text={day} />
+            {/if}
+          </div>
         {/each}
       </div>
     </div>

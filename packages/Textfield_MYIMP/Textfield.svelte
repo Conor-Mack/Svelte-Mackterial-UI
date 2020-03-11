@@ -7,6 +7,7 @@
   import NotchedOutline from "../Common/NotchedOutline.svelte";
   import FloatingLabel from "../Common/FloatingLabel.svelte";
   import Icon from "../Common/Icon.svelte";
+  import IconButton from "../IconButton";
 
   const cb = new ClassBuilder("text-field", ["primary", "medium"]);
 
@@ -36,6 +37,8 @@
   export let errorText = "";
   export let placeholder = "";
   export let icon = "";
+  export let useIconButton = false;
+  export let iconButtonClick = () => {};
   export let trailingIcon = false;
   export let textarea = false;
   export let rows = 4;
@@ -44,6 +47,7 @@
   export let persistent = false;
 
   let id = `${label}-${variant}`;
+  debugger;
 
   let modifiers = { fullwidth, disabled, textarea };
   let customs = { colour };
@@ -128,7 +132,11 @@ TODO:Needs error handling - this will depend on how Budibase handles errors
         on:change />
     {:else}
       {#if renderLeadingIcon}
-        <Icon {icon} />
+        {#if useIconButton}
+          <IconButton {icon} onClick={iconButtonClick} {disabled} />
+        {:else}
+          <Icon {icon} />
+        {/if}
       {/if}
       <input
         {id}
@@ -143,7 +151,11 @@ TODO:Needs error handling - this will depend on how Budibase handles errors
         aria-label={`Textfield ${variant}`}
         on:change />
       {#if renderTrailingIcon}
-        <Icon {icon} />
+        {#if useIconButton}
+          <IconButton {icon} onClick={iconButtonClick} {disabled} />
+        {:else}
+          <Icon {icon} />
+        {/if}
       {/if}
       {#if variant !== 'outlined'}
         <div class="mdc-line-ripple" />

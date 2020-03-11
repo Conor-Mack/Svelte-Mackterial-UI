@@ -2,10 +2,10 @@ import { MDCRipple } from "@material/ripple";
 
 export default function ripple(
   node,
-  props = { colour: "primary", unbounded: false }
+  props = { colour: "primary", unbounded: true }
 ) {
   node.classList.add("mdc-ripple-surface");
-  const component = new MDCRipple(node);
+  let component = new MDCRipple(node);
   component.unbounded = props.unbounded;
 
   if (props.colour === "secondary") {
