@@ -12,7 +12,8 @@
     Datatable,
     List,
     Menu,
-    DatePicker
+    DatePicker,
+    IconButton
   } from "@BBMD";
 
   let fullwidth = false;
@@ -87,6 +88,13 @@
 </style>
 
 <main>
+
+  <div>
+    <IconButton
+      onClick={() => alert`Happenin`}
+      icon="calendar_today"
+      size="medium" />
+  </div>
 
   <div class="dp" on:click={toggleDatePicker}>
     <DatePicker {open} />
