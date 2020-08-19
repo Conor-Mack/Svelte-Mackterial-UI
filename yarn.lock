@@ -49,7 +49,7 @@
     "@material/touch-target" "^4.0.0"
     "@material/typography" "^4.0.0"
 
-"@material/card@^4.0.0":
+"@material/card@4.0.0", "@material/card@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/card/-/card-4.0.0.tgz#0356602f0b3eed37594e3f7e8874aad484d9b948"
   dependencies:
@@ -359,7 +359,7 @@
   dependencies:
     "@material/feature-targeting" "^4.0.0"
 
-"@material/slider@^4.0.0":
+"@material/slider@4.0.0", "@material/slider@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/slider/-/slider-4.0.0.tgz#7a1596f7a31838e18cb7bbe15dec2d1131f82bb1"
   dependencies:
@@ -530,6 +530,13 @@
   resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-3.0.5.tgz#ee6b37b700999072b954213f4d2e509639d79a69"
   dependencies:
     estree-walker "^1.0.1"
+
+"@simonwep/pickr@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@simonwep/pickr/-/pickr-1.5.1.tgz#884a82e4628f7460b7cbd73c6f9ae2f1980639c5"
+  integrity sha512-BMYt5RsW7YLNrUF7Jdz1UM0E04ROD0iv/Z/c8APFb74VH0Zs3HeLiLacPgPqLx23VesL8aS6Jin/JiTmnkWujw==
+  dependencies:
+    core-js "^3.6.4"
 
 "@types/estree@*":
   version "0.0.42"
@@ -868,6 +875,11 @@ console-clear@^1.1.0:
 copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
+
+core-js@^3.6.4:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.6.5.tgz#7395dc273af37fb2e50e9bd3d9fe841285231d1a"
+  integrity sha512-vZVEEwZoIsI+vPEuoF9Iqf5H7/M3eeQqWlQnYa8FSKKePuYTf5MWnxb5SDAzCa60b3JBRS5g9b+Dq7b1y/RCrA==
 
 core-util-is@~1.0.0:
   version "1.0.2"

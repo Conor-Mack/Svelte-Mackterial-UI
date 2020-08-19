@@ -13,7 +13,9 @@
     List,
     Menu,
     DatePicker,
-    IconButton
+    IconButton,
+    Card,
+    Slider
   } from "@BBMD";
 
   let fullwidth = false;
@@ -58,71 +60,15 @@
     display: flex;
     flex-direction: column;
     padding: 1em;
-    width: 700px;
-    margin: 0 auto;
+    width: 1fr;
+    height: 1fr;
+    margin: 5px;
+    padding: 10px;
     border: 1px solid red;
-  }
-  /* 
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  } */
-
-  div {
-    flex: 1;
-    display: flex;
-    flex-flow: column nowrap;
-  }
-
-  .dp {
-    align-items: flex-start;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
   }
 </style>
 
-<main>
-
-  <div>
-    <IconButton
-      onClick={() => alert`Happenin`}
-      icon="calendar_today"
-      size="medium" />
-  </div>
-
-  <div class="dp" on:click={toggleDatePicker}>
-    <DatePicker {open} />
-    <button on:click={() => (open = true)}>Open</button>
-  </div>
-
-  <div>
-    <H3 text="Checkboxes" />
-    <CheckboxGroup
-      items={checkItems}
-      label="Whats your favourite?"
-      orientation="row"
-      alignEnd
-      onChange={s => console.log('SELECTED ITEMS', s)} />
-  </div>
-
-  <div>
-    <H3 text="Radiobuttons" />
-    <RadiobuttonGroup
-      items={radioItems}
-      label="Whats your gender?"
-      alignEnd
-      onChange={s => console.log(s)} />
-  </div>
-
-  <Icon icon="chevron_left" />
-
-</main>
+<main />
 <!-- 
 <h1>BUTTONS!</h1>
   <Button

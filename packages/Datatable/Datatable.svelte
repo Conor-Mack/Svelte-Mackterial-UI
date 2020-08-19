@@ -1,4 +1,5 @@
 <script>
+//TODO: Datatable will need to be rethought
   import { onMount, setContext } from "svelte";
   import { MDCDataTable } from "@material/data-table";
   import DatatableRow from "./DatatableRow.svelte";

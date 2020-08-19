@@ -7,6 +7,7 @@
     "start": "sirv public"
   },
   "devDependencies": {
+    "@material/slider": "4.0.0",
     "@rollup/plugin-commonjs": "^11.0.0",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "rollup": "^1.20.0",
@@ -16,9 +17,11 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "@material/card": "4.0.0",
     "@material/icon-button": "4.0.0",
     "@material/list": "4.0.0",
     "@material/menu": "4.0.0",
+    "@simonwep/pickr": "^1.5.1",
     "bind-decorator": "^1.0.11",
     "date-fns": "^2.10.0",
     "material-components-web": "^4.0.0",

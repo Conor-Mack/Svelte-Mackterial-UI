@@ -1,5 +1,5 @@
 import { writable } from "svelte/store"
-
+// TODO: Is this necessary anymore test
 function createItemsStore(componentOnSelect) {
     const { subscribe, set, update } = writable([])
 
