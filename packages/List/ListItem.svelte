@@ -6,6 +6,7 @@
 
   const cb = new ClassBuilder("list-item");
 
+  //TODO: Handle events with svelte
   export let onClick = item => {};
 
   export let item = null;

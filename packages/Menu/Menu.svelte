@@ -5,6 +5,7 @@
   import createItemsStore from "../Common/ItemStore.js";
 
   export let onSelect = selectedItems => {};
+  //TODO:
 
   export let width = "400px";
   export let open = true;
@@ -12,8 +13,6 @@
   export let useAbsolutePosition = false;
   export let absolutePositionX = 0;
   export let absolutePositionY = 0;
-
-  export let _bb;
 
   let menu = null;
   let menuList = null;
@@ -24,6 +23,7 @@
     // _bb.setContext("BBMD:list:context", "menu")
     // _bb.setContext("BBMD:list:props", { singleSelection: true })
 
+    //TODO: REMOVE
     selectedItemsStore = createItemsStore(() => onSelect($selectedItemsStore));
     // _bb.setContext("BBMD:list:selectItemStore", selectedItemsStore)
 

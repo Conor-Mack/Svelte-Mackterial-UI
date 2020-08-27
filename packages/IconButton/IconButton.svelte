@@ -4,6 +4,8 @@
 
   const cb = new ClassBuilder("icon-button");
 
+  //TODO: Test this - make sure on / off icon works as attended
+
   export let onClick = () => {};
   export let disabled = false;
   export let href = "";

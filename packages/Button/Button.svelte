@@ -1,12 +1,12 @@
 <script>
-  import { setContext, getContext } from "svelte";
+  import { setContext, getContext, onMount } from "svelte";
   import Icon from "../Common/Icon.svelte";
   import ripple from "../Ripple.js";
   import ClassBuilder from "../ClassBuilder.js";
 
-  const cb = new ClassBuilder("button", ["primary", "medium"]);
+  const cb = new ClassBuilder("button", ["primary", "medium", "text"]);
 
-  export let variant = "unelevated";
+  export let variant = "text";
   export let colour = "primary";
   export let size = "medium";
 
@@ -18,12 +18,19 @@
   export let text = "";
   export let disabled = false;
 
+  onMount(() => {
+    //TODO: Check context here in action
+    let ctx = getContext("BBMD:button:context");
+    extras = [ctx];
+  });
+
+  let extras = null;
   let modifiers = {};
   let customs = { size, colour };
 
   if (!href) modifiers = { variant };
 
-  let props = { modifiers, customs };
+  let props = { modifiers, customs, extras };
 
   let blockClasses = cb.build({ props });
   const labelClass = cb.elem("label");
@@ -37,6 +44,9 @@
 </script>
 
 <style>
+  .mdc-button:not(.fullwidth) {
+    width: fit-content;
+  }
   .fullwidth {
     width: 100%;
   }

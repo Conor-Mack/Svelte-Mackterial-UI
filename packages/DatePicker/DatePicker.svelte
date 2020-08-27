@@ -98,10 +98,6 @@
     grid-gap: 5px;
   }
 
-  .calendar-container > div {
-    /* border: 1px solid red; */
-  }
-
   .week-days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);

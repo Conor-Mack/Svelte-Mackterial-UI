@@ -1,5 +1,3 @@
-<script>
-  export let text = "";
-</script>
-
-<span class="mdc-typography--caption">{text}</span>
+<span class="mdc-typography--caption">
+  <slot />
+</span>

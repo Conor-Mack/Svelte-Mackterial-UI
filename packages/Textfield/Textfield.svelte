@@ -49,6 +49,7 @@
   export let value;
   export let _bb;
 
+  //TODO: Is this necessary
   let id = `${label}-${variant}`;
 
   let modifiers = { fullwidth, disabled, textarea };

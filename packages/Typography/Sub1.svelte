@@ -1,5 +1,3 @@
-<script>
-  export let text = ""
-</script>
-
-<span class="mdc-typography--subtitle1">{text}</span>
+<span class="mdc-typography--subtitle1">
+  <slot />
+</span>

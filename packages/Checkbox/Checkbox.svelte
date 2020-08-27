@@ -5,6 +5,7 @@
   import ClassBuilder from "../ClassBuilder.js";
   import { MDCCheckbox } from "@material/checkbox";
 
+  //TODO: refactor to use Svelte Events
   export let onClick = item => {};
 
   export let id = "";
@@ -24,6 +25,7 @@
       instance = new MDCCheckbox(checkbox);
       instance.indeterminate = indeterminate;
       if (context !== "list-item") {
+        //TODO - Context - Check this
         let fieldStore = getContext("BBMD:field-element");
         fieldStore.setInput(instance);
       }

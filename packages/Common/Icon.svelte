@@ -2,6 +2,9 @@
   import { getContext } from "svelte";
   import ripple from "../Ripple.js";
 
+  //TODO: May need to adapt for icon button
+
+  //TODO: use svelte events if necessary
   export let onClick = null;
   export let icon = "";
   export let context = "";
@@ -10,12 +13,12 @@
     ? `material-icons mdc-${context}__icon`
     : "material-icons";
 
+  //TODO: Is this needed?
   $: useRipple = onClick !== null;
 </script>
 
 <style>
   div {
-    /* border: 1px solid red; */
     border-radius: 50%;
     padding-top: 2px;
     width: fit-content;

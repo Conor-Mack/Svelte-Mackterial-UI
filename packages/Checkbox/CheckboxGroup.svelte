@@ -5,6 +5,7 @@
   export let label = "";
   export let orientation = "row";
   export let fullwidth = false;
+  //TODO: Use Svelte Events
   export let onChange = selectedItems => {};
 
   export let items = [];
@@ -13,12 +14,14 @@
   export let alignEnd = false;
   let selectedItems = [];
 
+  //TODO: Check and use better event handling
   function handleonChange(item) {
     if (!!item.checked) {
       item.checked = !item.checked;
     } else {
       item.checked = true;
     }
+    //TODO: Use svelte events
     onChange(items.filter(i => i.checked));
   }
 </script>

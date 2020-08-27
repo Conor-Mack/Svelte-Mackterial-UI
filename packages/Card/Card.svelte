@@ -7,11 +7,11 @@
   import { Button } from "../Button";
   import { IconButton } from "../IconButton";
   import ClassBuilder from "../ClassBuilder.js";
+
   export let width = "350px";
   export let height = "350px";
   export let variant = "standard";
 
-  export let _bb;
   let card;
 
   const cb = new ClassBuilder("card", ["standard"]);

@@ -1,5 +1,7 @@
 <script>
   import { setContext } from "svelte";
+  import Row from "./Row.svelte";
+  import Group from "./Group.svelte";
   import {
     Button,
     Icon,
@@ -60,15 +62,88 @@
     display: flex;
     flex-direction: column;
     padding: 1em;
-    width: 1fr;
-    height: 1fr;
-    margin: 5px;
-    padding: 10px;
-    border: 1px solid red;
+  }
+
+  main:first-child {
+    border-bottom: 1px solid #c1c1c1;
   }
 </style>
 
 <main />
+
+<Row title="Buttons">
+
+  <Group title="Colours">
+    <Button variant="raised" colour="primary" text="Primary" />
+    <Button variant="raised" colour="secondary" text="Secondary" />
+  </Group>
+
+  <Group title="Sizing">
+    <Button variant="raised" colour="secondary" text="Small" size="small" />
+    <Button variant="raised" colour="secondary" text="Medium" size="medium" />
+    <Button variant="raised" colour="secondary" text="Large" size="large" />
+
+  </Group>
+
+  <Group title="Text Buttons">
+    <Button variant="text" colour="secondary" text="Default" />
+    <Button href="#" text="Link" colour="secondary" size="small" />
+    <Button variant="text" colour="secondary" text="Icon" icon="reply" />
+  </Group>
+
+  <Group title="Raised Buttons">
+    <Button variant="raised" colour="secondary" text="Default" />
+    <Button variant="raised" colour="secondary" text="Icon" icon="reply" />
+  </Group>
+
+  <Group title="Unelevated Buttons">
+    <Button variant="unelevated" colour="secondary" text="Default" />
+    <Button
+      variant="unelevated"
+      colour="secondary"
+      text="Icon"
+      trailingIcon
+      icon="reply" />
+  </Group>
+
+  <Group title="Outlined Buttons">
+    <Button variant="outlined" colour="secondary" text="Default" />
+    <Button
+      variant="outlined"
+      colour="secondary"
+      text="Icon"
+      trailingIcon
+      icon="reply" />
+  </Group>
+
+  <!-- <Button variant="unelevated" colour="secondary" text="Unelevated" />
+  <Button
+    variant="raised"
+    colour="secondary"
+    text="Raised"
+    on:click={() => alert('Hi')} />
+  <Button variant="outlined" colour="secondary" text="Outlined" size="small" />
+  <Button
+    variant="unelevated"
+    colour="secondary"
+    text="Icon"
+    icon="reply"
+    size="small" />
+  <Button
+    variant="outlined"
+    colour="secondary"
+    text="Trailing Icon"
+    icon="reply"
+    trailingIcon
+    size="small" />
+  <Button
+    variant="raised"
+    colour="secondary"
+    text="Full Width"
+    fullwidth
+    size="small" /> -->
+
+</Row>
 <!-- 
 <h1>BUTTONS!</h1>
   <Button

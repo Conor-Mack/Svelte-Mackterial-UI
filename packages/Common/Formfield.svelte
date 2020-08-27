@@ -17,7 +17,7 @@
   let formField = null;
 
   let modifiers = { alignEnd };
-  let props = { modifiers };
+  let props = { modifiers, extras: ["bbmd-form-field"] };
 
   let blockClasses = cb.build({ props });
 
@@ -28,6 +28,12 @@
 
   onDestroy(unsubscribe);
 </script>
+
+<style>
+  .bbmd-form-field {
+    width: fit-content;
+  }
+</style>
 
 <div bind:this={formField} class={blockClasses}>
   <slot />
