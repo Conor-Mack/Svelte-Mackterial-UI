@@ -26,9 +26,9 @@
 
   let radioItems = [{ label: "Male" }, { label: "Female" }];
   let checkItems = [
-    { label: "Curry", indeterminate },
-    { label: "Chips", checked },
-    { label: "Garlic Bread" }
+    { label: "Facebook", indeterminate },
+    { label: "Twitter", checked },
+    { label: "Instagram" }
   ];
 
   let listItems = [
@@ -51,10 +51,14 @@
   ];
 
   let open = false;
+  let radioSelected = false;
+  $: console.log("RADIO SELECTED", radioSelected);
 
   function toggleDatePicker() {
     open = !open;
   }
+
+  let selected = [];
 </script>
 
 <style>
@@ -72,7 +76,6 @@
 <main />
 
 <Row title="Buttons">
-
   <Group title="Colours">
     <Button variant="raised" colour="primary" text="Primary" />
     <Button variant="raised" colour="secondary" text="Secondary" />
@@ -82,7 +85,6 @@
     <Button variant="raised" colour="secondary" text="Small" size="small" />
     <Button variant="raised" colour="secondary" text="Medium" size="medium" />
     <Button variant="raised" colour="secondary" text="Large" size="large" />
-
   </Group>
 
   <Group title="Text Buttons">
@@ -115,34 +117,37 @@
       trailingIcon
       icon="reply" />
   </Group>
+</Row>
 
-  <!-- <Button variant="unelevated" colour="secondary" text="Unelevated" />
-  <Button
-    variant="raised"
-    colour="secondary"
-    text="Raised"
-    on:click={() => alert('Hi')} />
-  <Button variant="outlined" colour="secondary" text="Outlined" size="small" />
-  <Button
-    variant="unelevated"
-    colour="secondary"
-    text="Icon"
-    icon="reply"
-    size="small" />
-  <Button
-    variant="outlined"
-    colour="secondary"
-    text="Trailing Icon"
-    icon="reply"
-    trailingIcon
-    size="small" />
-  <Button
-    variant="raised"
-    colour="secondary"
-    text="Full Width"
-    fullwidth
-    size="small" /> -->
+<Row title="Checkbox">
+  <Group title="Single Checkbox">
+    <Checkbox label="Default" />
+    <Checkbox label="Left Aligned" alignEnd />
+    <Checkbox label="Disabled" disabled />
+    <Checkbox indeterminate label="Indeterminate" />
+  </Group>
 
+  <Group title="Row Checkbox Group">
+    <CheckboxGroup
+      bind:selected
+      items={checkItems}
+      label="Contact me using: " />
+  </Group>
+
+  <Group title="Column Checkbox Group">
+    <CheckboxGroup
+      items={checkItems}
+      on:change={items => console.log('ITEMS', items)}
+      label="Sign up using: "
+      orientation="column" />
+  </Group>
+</Row>
+
+<Row title="Radiobuttons">
+  <Group title="Single Radiobuttons">
+    <!-- Single radio buttons here -->
+    <Radiobutton bind:checked={radioSelected} label="I am radio" />
+  </Group>
 </Row>
 <!-- 
 <h1>BUTTONS!</h1>

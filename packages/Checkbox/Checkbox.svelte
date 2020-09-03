@@ -5,9 +5,6 @@
   import ClassBuilder from "../ClassBuilder.js";
   import { MDCCheckbox } from "@material/checkbox";
 
-  //TODO: refactor to use Svelte Events
-  export let onClick = item => {};
-
   export let id = "";
   export let label = "";
   export let disabled = false;
@@ -45,18 +42,18 @@
   const blockClass = cb.build({ props });
 </script>
 
-<!-- TODO: Customizing Colour and Density - What level of customization for these things does Budibase need here? -->
+<!-- TODO: Customizing Colour and Density -->
 
 {#if context !== 'list-item'}
   <Formfield {label} {id} {alignEnd}>
     <div bind:this={checkbox} class={blockClass}>
       <input
         type="checkbox"
+        bind:checked
+        on:change
         class={cb.elem`native-control`}
         {id}
-        {disabled}
-        {checked}
-        on:click={onClick} />
+        {disabled} />
       <div class={cb.elem`background`}>
         <svg class={cb.elem`checkmark`} viewBox="0 0 24 24">
           <path
@@ -73,11 +70,11 @@
   <div bind:this={checkbox} class={blockClass}>
     <input
       type="checkbox"
+      bind:checked
+      on:change
       class={cb.elem`native-control`}
       {id}
-      {disabled}
-      {checked}
-      on:click={onClick} />
+      {disabled} />
     <div class={cb.elem`background`}>
       <svg class={cb.elem`checkmark`} viewBox="0 0 24 24">
         <path

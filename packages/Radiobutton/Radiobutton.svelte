@@ -4,12 +4,11 @@
   import ClassBuilder from "../ClassBuilder.js";
   import { MDCRadio } from "@material/radio";
 
-  export let onClick = item => {};
-
   export let id = "";
   export let label = "";
-  export let names = "radios";
-  export let checked = false;
+  export let value = null;
+  export let name = "radios";
+  export let group = "";
   export let disabled = false;
   export let alignEnd = false;
 
@@ -48,10 +47,11 @@
         {id}
         class={cb.elem`native-control`}
         type="radio"
-        {names}
-        {checked}
+        {name}
+        bind:group
+        value={value || label}
         {disabled}
-        on:click={onClick} />
+        on:click />
       <div class={cb.elem`background`}>
         <div class={cb.elem`outer-circle`} />
         <div class={cb.elem`inner-circle`} />
@@ -65,10 +65,11 @@
       {id}
       class={cb.elem`native-control`}
       type="radio"
-      {names}
-      {checked}
+      bind:group
+      {name}
+      value={value || label}
       {disabled}
-      on:click={onClick} />
+      on:click />
     <div class={cb.elem`background`}>
       <div class={cb.elem`outer-circle`} />
       <div class={cb.elem`inner-circle`} />

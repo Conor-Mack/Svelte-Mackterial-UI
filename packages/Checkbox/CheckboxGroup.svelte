@@ -1,28 +1,37 @@
 <script>
+  import { createEventDispatcher, onMount } from "svelte";
   import Checkbox from "./Checkbox.svelte";
   import Label from "../Common/Label.svelte";
+
+  const dispatch = createEventDispatcher();
 
   export let label = "";
   export let orientation = "row";
   export let fullwidth = false;
-  //TODO: Use Svelte Events
-  export let onChange = selectedItems => {};
+  export let bold = false;
 
   export let items = [];
 
   export let disabled = false;
   export let alignEnd = false;
-  let selectedItems = [];
+  export let selected = [];
 
-  //TODO: Check and use better event handling
+  onMount(() => {
+    items.forEach((item) => {
+      if (item.checked && !item.indeterminate) {
+        selected.push(item);
+      }
+    });
+  });
+
   function handleonChange(item) {
     if (!!item.checked) {
       item.checked = !item.checked;
     } else {
       item.checked = true;
     }
-    //TODO: Use svelte events
-    onChange(items.filter(i => i.checked));
+    selected = items.filter((i) => i.checked);
+    dispatch("change", selected);
   }
 </script>
 
@@ -61,7 +70,7 @@
 
 <div class="checkbox-group">
   <div class="checkbox-group__label">
-    <Label text={label} bold />
+    <Label text={label} {bold} />
   </div>
   <div class={`checkbox-group__boxes ${orientation}`}>
     {#each items as item, i}
@@ -73,7 +82,7 @@
           indeterminate={item.indeterminate || false}
           label={item.label}
           checked={item.checked || false}
-          onClick={() => handleonChange(item)} />
+          on:change={() => handleonChange(item)} />
       </div>
     {/each}
   </div>

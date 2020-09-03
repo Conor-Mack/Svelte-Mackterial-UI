@@ -1,6 +1,9 @@
 <script>
+  import { createEventDispatcher, onMount } from "svelte";
   import Radiobutton from "./Radiobutton.svelte";
   import Label from "../Common/Label.svelte";
+
+  const dispatch = createEventDispatcher();
 
   export let name = "radio-group";
   export let label = "";
@@ -8,18 +11,22 @@
   export let fullwidth = false;
   export let alignEnd = false;
 
-  export let onChange = selected => {};
-
   export let items = [];
 
-  let selected = null;
+  export let group = [];
+  export let selected = null;
+
+  onMount(() => {
+    let _selected = items.find(i => i.selected);
+    if (_selected) selected = _selected;
+  });
 
   function handleOnClick(item) {
-    if (!!selected) selected.selected = false;
+    if (selected) selected.selected = false;
     item.selected = true;
     selected = item;
     items = items;
-    onChange(selected);
+    dispatch("change", selected);
   }
 </script>
 
@@ -64,9 +71,10 @@
           id={`${item.label}-${i}`}
           {name}
           {alignEnd}
+          bind:group
           label={item.label}
-          checked={item.selected || false}
-          onClick={() => handleOnClick(item)} />
+          selected={item.selected || false}
+          on:click={() => handleOnClick(item)} />
       </div>
     {/each}
   </div>

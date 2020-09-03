@@ -1,6 +1,7 @@
 <script>
   import { Sub1 } from "@BBMD";
   export let title = "";
+  //TODO: differentiation header styles from group with some stying (bolding, color, underline maybe)
 </script>
 
 <style>
