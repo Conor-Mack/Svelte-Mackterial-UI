@@ -17,8 +17,11 @@
     DatePicker,
     IconButton,
     Card,
-    Slider
+    Slider,
   } from "@BBMD";
+  import ButtonDemo from "./demos/ButtonDemo.svelte";
+  import RadioDemo from "./demos/RadioDemo.svelte";
+  import CheckDemo from "./demos/CheckDemo.svelte";
 
   let fullwidth = false;
   let checked = true;
@@ -28,35 +31,29 @@
   let checkItems = [
     { label: "Facebook", indeterminate },
     { label: "Twitter", checked },
-    { label: "Instagram" }
+    { label: "Instagram" },
   ];
 
   let listItems = [
     {
       text: { primary: "Curry", secondary: "Chicken or Beef" },
-      value: 0
+      value: 0,
     },
     {
       text: { primary: "Pastie", secondary: "Bap with Mayo" },
       value: 1,
-      selected: true
+      selected: true,
     },
-    { text: { primary: "Fish", secondary: "Salmon or Cod" }, value: 2 }
+    { text: { primary: "Fish", secondary: "Salmon or Cod" }, value: 2 },
   ];
 
   let singleListItems = [
     { text: "Curry", value: 0 },
     { text: "Pastie", value: 0 },
-    { text: "Fish", value: 0 }
+    { text: "Fish", value: 0 },
   ];
 
   let open = false;
-  let radioSelected = false;
-  $: console.log("RADIO SELECTED", radioSelected);
-
-  function toggleDatePicker() {
-    open = !open;
-  }
 
   let selected = [];
 </script>
@@ -75,80 +72,10 @@
 
 <main />
 
-<Row title="Buttons">
-  <Group title="Colours">
-    <Button variant="raised" colour="primary" text="Primary" />
-    <Button variant="raised" colour="secondary" text="Secondary" />
-  </Group>
+<ButtonDemo />
+<CheckDemo />
+<RadioDemo />
 
-  <Group title="Sizing">
-    <Button variant="raised" colour="secondary" text="Small" size="small" />
-    <Button variant="raised" colour="secondary" text="Medium" size="medium" />
-    <Button variant="raised" colour="secondary" text="Large" size="large" />
-  </Group>
-
-  <Group title="Text Buttons">
-    <Button variant="text" colour="secondary" text="Default" />
-    <Button href="#" text="Link" colour="secondary" size="small" />
-    <Button variant="text" colour="secondary" text="Icon" icon="reply" />
-  </Group>
-
-  <Group title="Raised Buttons">
-    <Button variant="raised" colour="secondary" text="Default" />
-    <Button variant="raised" colour="secondary" text="Icon" icon="reply" />
-  </Group>
-
-  <Group title="Unelevated Buttons">
-    <Button variant="unelevated" colour="secondary" text="Default" />
-    <Button
-      variant="unelevated"
-      colour="secondary"
-      text="Icon"
-      trailingIcon
-      icon="reply" />
-  </Group>
-
-  <Group title="Outlined Buttons">
-    <Button variant="outlined" colour="secondary" text="Default" />
-    <Button
-      variant="outlined"
-      colour="secondary"
-      text="Icon"
-      trailingIcon
-      icon="reply" />
-  </Group>
-</Row>
-
-<Row title="Checkbox">
-  <Group title="Single Checkbox">
-    <Checkbox label="Default" />
-    <Checkbox label="Left Aligned" alignEnd />
-    <Checkbox label="Disabled" disabled />
-    <Checkbox indeterminate label="Indeterminate" />
-  </Group>
-
-  <Group title="Row Checkbox Group">
-    <CheckboxGroup
-      bind:selected
-      items={checkItems}
-      label="Contact me using: " />
-  </Group>
-
-  <Group title="Column Checkbox Group">
-    <CheckboxGroup
-      items={checkItems}
-      on:change={items => console.log('ITEMS', items)}
-      label="Sign up using: "
-      orientation="column" />
-  </Group>
-</Row>
-
-<Row title="Radiobuttons">
-  <Group title="Single Radiobuttons">
-    <!-- Single radio buttons here -->
-    <Radiobutton bind:checked={radioSelected} label="I am radio" />
-  </Group>
-</Row>
 <!-- 
 <h1>BUTTONS!</h1>
   <Button

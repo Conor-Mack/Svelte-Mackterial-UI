@@ -7,7 +7,6 @@
   export let id = "";
   export let label = "";
   export let value = null;
-  export let name = "radios";
   export let group = "";
   export let disabled = false;
   export let alignEnd = false;
@@ -40,16 +39,15 @@
   const blockClass = cb.build({ props });
 </script>
 
-{#if context !== 'list-item'}
+{#if context !== 'list-item' && label}
   <Formfield {id} {label} {alignEnd}>
     <div class={blockClass}>
       <input
         {id}
         class={cb.elem`native-control`}
         type="radio"
-        {name}
         bind:group
-        value={value || label}
+        {value}
         {disabled}
         on:click />
       <div class={cb.elem`background`}>
@@ -66,8 +64,7 @@
       class={cb.elem`native-control`}
       type="radio"
       bind:group
-      {name}
-      value={value || label}
+      {value}
       {disabled}
       on:click />
     <div class={cb.elem`background`}>

@@ -7,10 +7,12 @@
 
   export let id = "";
   export let label = "";
+  export let value = "";
+  export let group = null;
+  export let checked = false;
   export let disabled = false;
   export let alignEnd = false;
   export let indeterminate = false;
-  export let checked = false;
 
   let instance = null;
   let checkbox = null;
@@ -29,6 +31,21 @@
     }
   });
 
+  function handleCheck(event) {
+    let value = event.target.value;
+    if (group) {
+      let idx = group.indexOf(value);
+      if (idx > -1) {
+        group.splice(idx, 1);
+      } else {
+        group.push(value);
+      }
+      group = group;
+    } else {
+      checked = !checked;
+    }
+  }
+
   let extras = null;
 
   if (context === "list-item") {
@@ -40,16 +57,19 @@
   let props = { modifiers, extras };
 
   const blockClass = cb.build({ props });
+  $: isChecked = group ? group.includes(value) : checked;
 </script>
 
 <!-- TODO: Customizing Colour and Density -->
 
-{#if context !== 'list-item'}
+{#if context !== 'list-item' && label}
   <Formfield {label} {id} {alignEnd}>
     <div bind:this={checkbox} class={blockClass}>
       <input
         type="checkbox"
-        bind:checked
+        {value}
+        checked={isChecked}
+        on:change={handleCheck}
         on:change
         class={cb.elem`native-control`}
         {id}
@@ -70,8 +90,10 @@
   <div bind:this={checkbox} class={blockClass}>
     <input
       type="checkbox"
-      bind:checked
+      checked={isChecked}
+      on:change={handleCheck}
       on:change
+      {value}
       class={cb.elem`native-control`}
       {id}
       {disabled} />
