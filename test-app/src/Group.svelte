@@ -1,7 +1,12 @@
 <script>
   import { Sub1 } from "@BBMD";
+  import { buildStyle } from "./helpers.js";
   export let title = "";
+  export let orientation = "row";
+  export let width = null;
   //TODO: differentiation header styles from group with some stying (bolding, color, underline maybe)
+
+  $: style = buildStyle({ width });
 </script>
 
 <style>
@@ -16,14 +21,19 @@
 
   .content {
     display: flex;
-    flex-flow: row nowrap;
+    flex-direction: row;
+    flex-wrap: row;
     gap: 10px;
+  }
+
+  .column {
+    flex-direction: column;
   }
 </style>
 
-<div class="group">
+<div class="group" {style}>
   <Sub1>{title}</Sub1>
-  <div class="content">
+  <div class="content" class:column={orientation !== 'row'}>
     <slot />
   </div>
 </div>

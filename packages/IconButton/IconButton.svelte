@@ -1,42 +1,66 @@
 <script>
-  import ripple from "../Ripple.js";
+  import { onMount } from "svelte";
+  import ripple from "../Common/Ripple.js";
   import ClassBuilder from "../ClassBuilder.js";
 
   const cb = new ClassBuilder("icon-button");
 
-  //TODO: Test this - make sure on / off icon works as attended
+  let on = false;
 
-  export let onClick = () => {};
+  export let context = "";
   export let disabled = false;
   export let href = "";
   export let icon = "";
   export let onIcon = ""; //on state icon for toggle button
   export let size = "medium";
 
+  function onButtonClick() {
+    open = !open;
+  }
+
   $: isToggleButton = !!icon && !!onIcon;
   $: useLinkButton = !!href;
 
   $: customs = { size };
-  $: props = { customs, extras: ["material-icons"] };
+  $: props = { customs, extras: ["material-icons", context] };
   $: iconBtnClass = cb.build({ props });
 </script>
 
 {#if useLinkButton}
-  <a on:click={onClick} class={iconBtnClass} {href} {disabled}>
+  <a
+    on:click={onButtonClick}
+    on:click
+    class={iconBtnClass}
+    {href}
+    {disabled}
+    role="button"
+    tabindex="0">
     {#if isToggleButton}
-      <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">
+      <i
+        use:ripple
+        class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">
         {onIcon}
       </i>
-      <i class="material-icons mdc-icon-button__icon">{icon}</i>
+      <i use:ripple class="material-icons mdc-icon-button__icon">{icon}</i>
     {:else}{icon}{/if}
   </a>
 {:else}
-  <button on:click={onClick} use:ripple class={iconBtnClass} {disabled}>
+  <button
+    on:click={onButtonClick}
+    on:click
+    class={iconBtnClass}
+    {disabled}
+    role="button"
+    aria-label="Add to favorites"
+    aria-pressed="false"
+    tabindex="0">
     {#if isToggleButton}
-      <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">
+      <i use:ripple class="material-icons mdc-icon-button__icon">{icon}</i>
+      <i
+        use:ripple
+        class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on">
         {onIcon}
       </i>
-      <i class="material-icons mdc-icon-button__icon">{icon}</i>
     {:else}{icon}{/if}
   </button>
 {/if}

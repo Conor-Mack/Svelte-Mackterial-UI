@@ -1,5 +1,5 @@
 <script>
-  import { setContext, onMount } from "svelte";
+  import { setContext, onMount, createEventDispatcher } from "svelte";
   import { MDCTextField } from "@material/textfield";
   import { MDCLineRipple } from "@material/line-ripple";
 
@@ -9,8 +9,11 @@
   import HelperText from "./HelperText.svelte";
   import CharacterCounter from "./CharacterCounter.svelte";
   import Icon from "../Common/Icon.svelte";
+  import { IconButton } from "../IconButton";
 
   const cb = new ClassBuilder("text-field", ["primary", "medium"]);
+
+  const dispatch = createEventDispatcher();
 
   let tf = null;
   export let tfHeight = null;
@@ -24,8 +27,6 @@
     };
   });
 
-  export let onChange = text => {};
-
   export let label = "";
   export let variant = "standard"; //outlined | filled | standard
   export let disabled = false;
@@ -35,19 +36,19 @@
   export let type = "text"; //text or password
   export let required = false;
   export let minLength = null;
-  export let maxLength = null;
+  export let maxLength = 255;
   export let helperText = "";
   export let errorText = "";
   export let placeholder = "";
   export let icon = "";
+  export let useIconButton = false;
   export let trailingIcon = false;
   export let textarea = false;
   export let rows = 4;
   export let cols = 40;
   export let validation = false;
   export let persistent = false;
-  export let value;
-  export let _bb;
+  export let value = "";
 
   //TODO: Is this necessary
   let id = `${label}-${variant}`;
@@ -80,31 +81,17 @@
   $: useNotchedOutline = variant == "outlined" || textarea;
   $: renderLeadingIcon = useIcon && !trailingIcon;
   $: renderTrailingIcon = useIcon && trailingIcon;
-  $: safeMaxLength = maxLength <= 0 ? undefined : maxLength;
 
   let props = { modifiers, customs };
   const blockClasses = cb.build({ props });
-  const inputClasses = cb.elem("input");
-
-  let renderMaxLength = !!maxLength ? `0 / ${maxLength}` : "0";
 
   function focus(event) {
     tfInstance.focus();
-  }
-
-  function changed(e) {
-    const val = e.target.value;
-    value = val;
-    if (_bb.isBound(_bb.props.value)) {
-      _bb.setStateFromBinding(_bb.props.value, val);
-    }
-    _bb.call(onChange, val);
   }
 </script>
 
 <style>
   .textfield-container {
-    padding: 8px;
     display: flex;
     flex-direction: column;
     width: 227px;
@@ -115,65 +102,75 @@
   }
 </style>
 
-<!-- 
-TODO:Needs error handling - this will depend on how Budibase handles errors
- -->
-
-<div class="textfield-container" class:fullwidth>
-  <div bind:this={tf} bind:clientHeight={tfHeight} class={blockClasses}>
-    {#if textarea}
-      <CharacterCounter />
-      <textarea
-        {id}
-        class={inputClasses}
-        class:fullwidth
-        {disabled}
-        {rows}
-        {cols}
-        {required}
-        {placeholder}
-        {minLength}
-        maxLength={safeMaxLength}
-        {value}
-        on:change={changed} />
-    {:else}
+<div bind:this={tf} bind:clientHeight={tfHeight} class={blockClasses}>
+  {#if textarea}
+    <CharacterCounter />
+    <textarea
+      {id}
+      class={cb.elem`input`}
+      class:fullwidth
+      {disabled}
+      {rows}
+      {cols}
+      {required}
+      {placeholder}
+      {minLength}
+      {maxLength}
+      on:change
+      {value} />
+  {:else}
+    <div class="textfield-container" class:fullwidth>
       {#if renderLeadingIcon}
-        <Icon context="text-field" {icon} />
+        {#if useIconButton}
+          <IconButton
+            {icon}
+            context="mdc-text-field__icon mdc-text-field__icon--trailing"
+            on:click />
+        {:else}
+          <Icon context="text-field" {icon} />
+        {/if}
       {/if}
       <input
         {id}
         {disabled}
-        class={inputClasses}
+        class={cb.elem`input`}
         {type}
         {required}
         placeholder={!!label && fullwidth ? label : placeholder}
         {minLength}
-        maxLength={safeMaxLength}
+        {maxLength}
+        on:change
         {value}
         aria-label={`Textfield ${variant}`}
-        on:focus={focus}
-        on:input={changed} />
+        on:focus={focus} />
       {#if renderTrailingIcon}
-        <Icon context="text-field" {icon} />
+        {#if useIconButton}
+          <IconButton
+            {icon}
+            context="mdc-text-field__icon mdc-text-field__icon--trailing"
+            on:click />
+        {:else}
+          <Icon context="text-field" {icon} />
+        {/if}
       {/if}
       {#if variant !== 'outlined'}
         <div class="mdc-line-ripple" />
       {/if}
-    {/if}
-    {#if useNotchedOutline}
-      <NotchedOutline {useLabel}>
-        {#if useLabel}
-          <FloatingLabel forInput={id} text={label} />
-        {/if}
-      </NotchedOutline>
-    {:else if useLabel}
-      <FloatingLabel forInput={id} text={label} />
-    {/if}
-  </div>
-  <HelperText
-    {persistent}
-    {validation}
-    {errorText}
-    {helperText}
-    useCharCounter={!!maxLength && !textarea} />
+    </div>
+  {/if}
+  {#if useNotchedOutline}
+    <NotchedOutline {useLabel}>
+      {#if useLabel}
+        <FloatingLabel forInput={id} text={label} />
+      {/if}
+    </NotchedOutline>
+  {:else if useLabel}
+    <FloatingLabel forInput={id} text={label} />
+  {/if}
 </div>
+<HelperText
+  {persistent}
+  {validation}
+  {errorText}
+  {helperText}
+  useCharCounter={!!maxLength && !textarea} />

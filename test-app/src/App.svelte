@@ -22,6 +22,7 @@
   import ButtonDemo from "./demos/ButtonDemo.svelte";
   import RadioDemo from "./demos/RadioDemo.svelte";
   import CheckDemo from "./demos/CheckDemo.svelte";
+  import TextfieldDemo from "./demos/TextfieldDemo.svelte";
 
   let fullwidth = false;
   let checked = true;
@@ -75,6 +76,7 @@
 <ButtonDemo />
 <CheckDemo />
 <RadioDemo />
+<TextfieldDemo />
 
 <!-- 
 <h1>BUTTONS!</h1>

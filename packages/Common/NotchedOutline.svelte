@@ -1,6 +1,6 @@
 <script>
   import "@material/notched-outline/mdc-notched-outline.scss";
-  export let useLabel = true;
+  export let useLabel = false;
 </script>
 
 <div class="mdc-notched-outline">

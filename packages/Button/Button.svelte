@@ -1,7 +1,7 @@
 <script>
   import { setContext, getContext, onMount } from "svelte";
   import Icon from "../Common/Icon.svelte";
-  import ripple from "../Ripple.js";
+  import ripple from "../Common/Ripple.js";
   import ClassBuilder from "../ClassBuilder.js";
 
   const cb = new ClassBuilder("button", ["primary", "medium", "text"]);

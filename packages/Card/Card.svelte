@@ -31,9 +31,7 @@
   <CardBody>
     <CardImage url="https://picsum.photos/350" />
     <H2 text="Header 1" />
-    >
     <Body2 text="Something mc Something" />
-    >
   </CardBody>
   <CardFooter>
     <Button label="Save" />

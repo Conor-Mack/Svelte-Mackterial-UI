@@ -8,12 +8,12 @@
     getYear,
     addMonths,
     subMonths,
-    format
+    format,
   } from "date-fns";
   import { MDCMenu } from "@material/menu";
   import { Textfield } from "../Textfield";
   import Icon from "../Common/Icon.svelte";
-  import ripple from "../Ripple.js";
+  import ripple from "../Common/Ripple.js";
   import { Body1, Body2, Caption } from "../Typography";
 
   let textFieldHeight = null;
@@ -25,7 +25,6 @@
   const weekdayMap = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
   export let date = new Date();
-  export let open = true;
 
   onMount(() => {
     if (!!menu) {
@@ -70,7 +69,6 @@
     dateMonthBegins > 5 && daysArr[daysArr.length - 1] > 30 ? 6 : 5;
   $: sameMonthAndYear =
     getMonth(date) === getMonth(navDate) && getYear(date) === getYear(navDate);
-  debugger;
 </script>
 
 <style>
@@ -128,8 +126,8 @@
     bind:tfHeight={textFieldHeight}
     value={selectedDate}
     trailingIcon={true}
-    useIconButton={true}
-    iconButtonClick={openCalendar}
+    useIconButton
+    on:click={openCalendar}
     icon="calendar_today"
     label="Select Date" />
 
@@ -143,7 +141,7 @@
           <Icon icon="chevron_left" onClick={subtractMonth} />
         </span>
         <div class="centreText">
-          <Body1 text={monthAndYear} />
+          <Body1>{monthAndYear}</Body1>
         </div>
         <span>
           <Icon icon="chevron_right" onClick={addMonth} />
@@ -152,7 +150,7 @@
       <div class="week-days">
         {#each weekdayMap as day, i}
           <div class="centreText">
-            <Caption text={day} />
+            <Caption>{day}</Caption>
           </div>
         {/each}
       </div>
@@ -166,10 +164,10 @@
             class={`bbmd-day ${dayOfSelectedDate === day && sameMonthAndYear ? 'selected' : ''}`}>
             {#if i === 0}
               <div style={`grid-column-start: ${dateMonthBegins}`}>
-                <Body2 text={day} />
+                <Body2>{day}</Body2>
               </div>
             {:else}
-              <Body2 text={day} />
+              <Body2>{day}</Body2>
             {/if}
           </div>
         {/each}

@@ -1,6 +1,6 @@
 <script>
   import { getContext } from "svelte";
-  import ripple from "../Ripple.js";
+  import ripple from "./Ripple.js";
 
   //TODO: May need to adapt for icon button
 
@@ -28,9 +28,5 @@
 </style>
 
 {#if useRipple}
-  <div use:ripple>
-    <i on:click={onClick} class={cls}>{icon}</i>
-  </div>
-{:else}
-  <i class={cls}>{icon}</i>
-{/if}
+  <div use:ripple><i on:click={onClick} class={cls}>{icon}</i></div>
+{:else}<i class={cls}>{icon}</i>{/if}

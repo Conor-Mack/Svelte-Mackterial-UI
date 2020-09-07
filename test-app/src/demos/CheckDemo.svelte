@@ -16,7 +16,7 @@
     <Checkbox label="Indeterminate" indeterminate value="ind" />
   </Group>
 
-  <Group title="Checkbox Groups">
+  <Group title="Checkbox Group">
     <Checkbox bind:group={checkgroup} label="Facebook" value="Facebook" />
     <Checkbox bind:group={checkgroup} label="Email" value="Email" />
     <Checkbox bind:group={checkgroup} label="Twitter" value="Twitter" />
