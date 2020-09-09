@@ -1,11 +1,15 @@
 <script>
-  export let isPrimaryAction = false
-  export let onClick = () => {}
+  export let useHoverEffect = true;
 
-  let cardBody
-  let cls = isPrimaryAction ? "mdc-card__primary-action" : ""
+  let cls = useHoverEffect ? "card-body mdc-card__primary-action" : "card-body";
 </script>
 
-<div bind:this={cardBody} class={cls}>
+<style>
+  .card-body {
+    padding: 16px;
+  }
+</style>
+
+<div on:click class={cls}>
   <slot />
 </div>

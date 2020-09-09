@@ -23,6 +23,9 @@
   import RadioDemo from "./demos/RadioDemo.svelte";
   import CheckDemo from "./demos/CheckDemo.svelte";
   import TextfieldDemo from "./demos/TextfieldDemo.svelte";
+  import CardDemo from "./demos/CardDemo.svelte";
+  import DatatableDemo from "./demos/DatatableDemo.svelte";
+  import ListDemo from "./demos/ListDemo.svelte";
 
   let fullwidth = false;
   let checked = true;
@@ -33,25 +36,6 @@
     { label: "Facebook", indeterminate },
     { label: "Twitter", checked },
     { label: "Instagram" },
-  ];
-
-  let listItems = [
-    {
-      text: { primary: "Curry", secondary: "Chicken or Beef" },
-      value: 0,
-    },
-    {
-      text: { primary: "Pastie", secondary: "Bap with Mayo" },
-      value: 1,
-      selected: true,
-    },
-    { text: { primary: "Fish", secondary: "Salmon or Cod" }, value: 2 },
-  ];
-
-  let singleListItems = [
-    { text: "Curry", value: 0 },
-    { text: "Pastie", value: 0 },
-    { text: "Fish", value: 0 },
   ];
 
   let open = false;
@@ -77,61 +61,6 @@
 <CheckDemo />
 <RadioDemo />
 <TextfieldDemo />
-
-<!-- 
-<h1>BUTTONS!</h1>
-  <Button
-    href="https://www.youtube.com/watch?v=BUS6nKpddec"
-    text="Link Me"
-    colour="secondary"
-    size="small" />
-  <Button text="Raised" on:click={() => alert('Hi')} />
-  <Button variant="outlined" text="Outlined" colour="secondary" size="small" />
-  <Button text="Nothing" size="large" colour="secondary" fullwidth />
-
-  <H3 text="TextFields" />
-
-  <div>
-    <Textfield
-      label="Primary"
-      colour="primary"
-      helperText="Please add your forename" />
-
-    <Textfield
-      label="Secondary Filled"
-      colour="secondary"
-      variant="filled"
-      helperText="Please add your surname" />
-
-    <Textfield label="Primary Outlined" variant="outlined" />
-
-    <Textfield
-      label="Secondary Outlined"
-      icon="alarm_on"
-      variant="outlined"
-      colour="secondary" />
-
-    <Textfield
-      label="Full Width"
-      helperText="I don't use a label"
-      icon="alarm_on"
-      useCharCounter
-      fullwidth
-      persistent />
-
-    <Textfield label="Textarea" textarea />
-
-    <Textfield
-      label="Textarea Secondary"
-      colour="secondary"
-      icon="alarm_on"
-      textarea />
-
-    <Textfield
-      label="Textarea Fullwidth"
-      textarea
-      fullwidth
-      useCharCounter
-      maxLength={500} />
-
-  </div> -->
+<CardDemo />
+<Datatable />
+<ListDemo />

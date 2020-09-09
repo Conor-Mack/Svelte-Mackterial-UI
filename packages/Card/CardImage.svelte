@@ -1,5 +1,7 @@
 <script>
-  export let url = ""
+  import buildStyle from "../";
+  import CardTitle from "./CardTitle.svelte";
+  export let url = "https://picsum.photos/200/300";
 </script>
 
 <div

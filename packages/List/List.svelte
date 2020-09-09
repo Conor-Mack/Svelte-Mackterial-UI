@@ -10,13 +10,18 @@
   let list = null;
   let instance = null;
 
-  export let onSelect = selectedItems => {};
+  //TODO: Build list from data. Optional to build static.
+  export let data = [];
+
+  //TODO: use svelte events
+  export let onSelect = (selectedItems) => {};
 
   export let variant = "one-line";
   //items: [{text: string | {primary: string, secondary: string}, value: any, selected: bool}...n]
   export let items = [];
   export let singleSelection = false;
-  export let inputElement = null;
+
+  export let actionElement = null;
 
   let role = "listbox";
 
@@ -24,7 +29,7 @@
     if (!!list) {
       instance = new MDCList(list);
       instance.singleSelection = singleSelection;
-      instance.listElements.map(element => new MDCRipple(element));
+      instance.listElements.map((element) => new MDCRipple(element));
     }
 
     let context = getContext("BBMD:list:context");
@@ -40,8 +45,8 @@
 
   function handleSelectedItem(item) {
     if (!item.disabled) {
-      if (singleSelection || inputElement === "radiobutton") {
-        items.forEach(i => {
+      if (singleSelection || actionElement === "radiobutton") {
+        items.forEach((i) => {
           if (i.selected) i.selected = false;
         });
       }
@@ -52,13 +57,15 @@
       } else {
         items[idx].selected = true;
       }
-      onSelect(items.filter(item => item.selected));
+
+      //svelte events
+      onSelect(items.filter((item) => item.selected));
     }
   }
 
-  $: useDoubleLine =
+  $: doubleLine =
     variant == "two-line" &&
-    items.every(i => typeof i.text == "object" && "primary" in i.text);
+    items.every((i) => typeof i.text == "object" && "primary" in i.text);
 
   $: modifiers = { variant };
   $: props = { modifiers };
@@ -69,8 +76,8 @@
   {#each items as item, i}
     <ListItem
       {item}
-      {useDoubleLine}
-      {inputElement}
+      {doubleLine}
+      {actionElement}
       onClick={() => handleSelectedItem(item)} />
     {#if item.divider}
       <li role="separator" class="mdc-list-divider" />

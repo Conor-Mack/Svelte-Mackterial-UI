@@ -1,5 +1,7 @@
-import "./_styles.scss"
-export { default as Card } from "./Card.svelte"
-export { default as CardBody } from "./CardBody.svelte"
-export { default as CardFooter } from "./CardFooter.svelte"
-export { default as CardHeader } from "./CardHeader.svelte"
+import "./_styles.scss";
+export { default as Card } from "./Card.svelte";
+export { default as CardBody } from "./CardBody.svelte";
+export { default as CardActions } from "./CardActions.svelte";
+export { default as CardImage } from "./CardImage.svelte";
+export { default as CardHeader } from "./CardHeader.svelte";
+export { default as CardText } from "./CardText.svelte";

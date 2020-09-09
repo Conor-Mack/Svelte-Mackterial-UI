@@ -4,8 +4,8 @@
   import { onMount, setContext } from "svelte";
   import createItemsStore from "../Common/ItemStore.js";
 
-  export let onSelect = selectedItems => {};
-  //TODO:
+  //TODO: Svelte events
+  export let onSelect = (selectedItems) => {};
 
   export let width = "400px";
   export let open = true;
@@ -20,10 +20,11 @@
   let selectedItemsStore;
 
   onMount(() => {
+    //TODO: Handle context properly here
     // _bb.setContext("BBMD:list:context", "menu")
     // _bb.setContext("BBMD:list:props", { singleSelection: true })
 
-    //TODO: REMOVE
+    //TODO: Remove create items store
     selectedItemsStore = createItemsStore(() => onSelect($selectedItemsStore));
     // _bb.setContext("BBMD:list:selectItemStore", selectedItemsStore)
 
@@ -37,8 +38,6 @@
       }
     }
   });
-
-  // $: menuList && _bb.attachChildren(menuList)
 </script>
 
 {#if useFixedPosition || useAbsolutePosition}
@@ -46,11 +45,12 @@
     bind:this={menu}
     class="mdc-menu mdc-menu-surface"
     style={`width: ${width}`}>
+    <!-- TODO: Adapt to make proper use of List component -->
     <ul bind:this={menuList} class="mdc-list" role="menu" />
   </div>
 {:else}
   <div class="mdc-menu-surface--anchor">
-    <!--TODO: Will automatically anchor to slotted element. Not sure how this would be achieved with Budibase though -->
+    <!--TODO: Will automatically anchor to slotted element. Test this -->
     <slot />
     <div
       bind:this={menu}

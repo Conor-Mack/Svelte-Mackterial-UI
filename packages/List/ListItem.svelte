@@ -7,11 +7,12 @@
   const cb = new ClassBuilder("list-item");
 
   //TODO: Handle events with svelte
-  export let onClick = item => {};
+  export let onClick = (item) => {};
 
+  //TODO: Use flat prop structure instead of item object
   export let item = null;
-  export let useDoubleLine = false;
-  export let inputElement = null; //radiobutton or checkbox
+  export let doubleLine = false;
+  export let actionElement = null; //radiobutton or checkbox
 
   let role = "option";
 
@@ -22,13 +23,13 @@
     }
   });
 
-  $: if (!!inputElement) {
+  $: if (!!actionElement) {
     setContext("BBMD:input:context", "list-item");
   }
 
   $: modifiers = {
-    selected: !inputElement ? item.selected : null,
-    disabled: item.disabled
+    selected: !actionElement ? item.selected : null,
+    disabled: item.disabled,
   };
   $: props = { modifiers };
   $: listItemClass = cb.build({ props });
@@ -49,7 +50,7 @@
     </span>
   {/if}
   <span class={cb.elem`text`}>
-    {#if useDoubleLine}
+    {#if doubleLine}
       <span class={cb.elem`primary-text`}>{item.text.primary}</span>
       {#if useSecondaryText}
         <span class={cb.elem`secondary-text`}>{item.text.secondary}</span>
@@ -57,10 +58,10 @@
     {:else}{item.text}{/if}
   </span>
 
-  {#if inputElement}
-    {#if inputElement === 'radiobutton'}
+  {#if actionElement}
+    {#if actionElement === 'radiobutton'}
       <Radiobutton checked={item.selected} disabled={item.disabled} />
-    {:else if inputElement === 'checkbox'}
+    {:else if actionElement === 'checkbox'}
       <Checkbox checked={item.selected} disabled={item.disabled} />
     {/if}
   {:else if item.trailingIcon}

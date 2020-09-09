@@ -7,7 +7,7 @@
 
   let on = false;
 
-  export let context = "";
+  export let context = ""; //TODO: Properly deal with context
   export let disabled = false;
   export let href = "";
   export let icon = "";

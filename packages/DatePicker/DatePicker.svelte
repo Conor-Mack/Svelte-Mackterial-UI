@@ -29,7 +29,6 @@
   onMount(() => {
     if (!!menu) {
       instance = new MDCMenu(menu);
-      instance.open = true;
       instance.setFixedPostion = true;
     }
   });
