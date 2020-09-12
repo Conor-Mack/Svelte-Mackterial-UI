@@ -7,7 +7,7 @@ export { Button, Icon, Textfield };
 export * from "./Typography";
 export { Checkbox } from "./Checkbox";
 export { Radiobutton } from "./Radiobutton";
-export { Datatable } from "./Datatable";
+export * from "./Datatable";
 export { List } from "./List";
 export { Menu } from "./Menu";
 export { DatePicker } from "./DatePicker";

@@ -62,5 +62,5 @@
 <RadioDemo />
 <TextfieldDemo />
 <CardDemo />
-<Datatable />
+<DatatableDemo />
 <ListDemo />

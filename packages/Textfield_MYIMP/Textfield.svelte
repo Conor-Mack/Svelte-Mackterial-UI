@@ -47,7 +47,6 @@
   export let persistent = false;
 
   let id = `${label}-${variant}`;
-  debugger;
 
   let modifiers = { fullwidth, disabled, textarea };
   let customs = { colour };
@@ -67,11 +66,11 @@
   }
 
   let helperClasses = cb.debase(`${cb.block}-helper-text`, {
-    modifiers: { persistent, validation }
+    modifiers: { persistent, validation },
   });
 
   let useLabel = !!label && (!fullwidth || (fullwidth && textarea));
-  let useIcon = !!icon && (!textarea && !fullwidth);
+  let useIcon = !!icon && !textarea && !fullwidth;
 
   $: useNotchedOutline = variant == "outlined" || textarea;
 

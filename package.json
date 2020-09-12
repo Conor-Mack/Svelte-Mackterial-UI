@@ -21,7 +21,6 @@
     "@material/icon-button": "4.0.0",
     "@material/list": "4.0.0",
     "@material/menu": "4.0.0",
-    "@simonwep/pickr": "^1.5.1",
     "bind-decorator": "^1.0.11",
     "date-fns": "^2.10.0",
     "material-components-web": "^4.0.0",
