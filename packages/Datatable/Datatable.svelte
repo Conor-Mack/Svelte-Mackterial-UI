@@ -27,10 +27,10 @@
   let instance = null;
 
   function onRowSelect(data) {
-    //Compare and match data with schema
+    //Compare and match data with schema - returns selected row even if built without data
     const d = schemaEntries.reduce((acc, curr, idx) => {
       const [key, definition] = curr;
-      if (definition.type !== "element") {
+      if (!definition.element) {
         acc = { ...acc, [key]: data[idx] };
       }
       return acc;

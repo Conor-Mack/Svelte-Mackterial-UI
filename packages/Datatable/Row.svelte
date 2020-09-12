@@ -4,7 +4,6 @@
   const dispatch = createEventDispatcher();
 
   export let selected = false;
-  export let builtWithData = false;
 
   let row = null;
 
