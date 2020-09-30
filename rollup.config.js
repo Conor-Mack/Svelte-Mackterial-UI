@@ -2,6 +2,15 @@ import path from "path";
 import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
 import postcss from "rollup-plugin-postcss";
+import alias from "rollup-plugin-alias";
+import commonjs from "rollup-plugin-commonjs";
+
+const aliases = {
+  entries: {
+    find: "helpers",
+    replacement: path.resolve(__dirname, "helpers"),
+  },
+};
 
 const postcssOptions = () => ({
   extensions: [".scss", ".sass"],
@@ -11,10 +20,10 @@ const postcssOptions = () => ({
     [
       "sass",
       {
-        includePaths: ["./node_modules"]
-      }
-    ]
-  ]
+        includePaths: ["./node_modules"],
+      },
+    ],
+  ],
 });
 
 export default {
@@ -24,14 +33,16 @@ export default {
       file: path.resolve(__dirname, "dist/index.js"),
       format: "esm",
       name: "mdtest",
-      sourcemap: "inline"
-    }
+      sourcemap: "inline",
+    },
   ],
   plugins: [
+    alias(aliases),
     svelte({
-      hydratable: true
+      hydratable: true,
     }),
     resolve(),
-    postcss(postcssOptions())
-  ]
+    commonjs(),
+    postcss(postcssOptions()),
+  ],
 };

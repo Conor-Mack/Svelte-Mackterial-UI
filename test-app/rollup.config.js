@@ -29,6 +29,10 @@ const aliases = {
       find: "@BBMD",
       replacement: path.resolve(__dirname, "../packages"),
     },
+    {
+      find: "helpers",
+      replacement: path.resolve(__dirname, "../helpers"),
+    },
   ],
 };
 

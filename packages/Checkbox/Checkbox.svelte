@@ -16,17 +16,17 @@
 
   let instance = null;
   let checkbox = null;
-
-  let context = getContext("BBMD:input:context");
+  let context = null;
 
   onMount(() => {
+    context = getContext("BBMD:input:context");
     if (!!checkbox) {
       instance = new MDCCheckbox(checkbox);
       instance.indeterminate = indeterminate;
       if (context !== "list-item") {
         //TODO - Context - Check this
-        let fieldStore = getContext("BBMD:field-element");
-        fieldStore.setInput(instance);
+        // let fieldStore = getContext("BBMD:field-element");
+        // fieldStore.setInput(instance);
       }
     }
   });
@@ -48,15 +48,15 @@
 
   let extras = null;
 
-  if (context === "list-item") {
+  $: if (context === "list-item") {
     extras = ["mdc-list-item__meta"];
   }
 
   const cb = new ClassBuilder("checkbox");
-  let modifiers = { disabled };
-  let props = { modifiers, extras };
+  $: modifiers = { disabled };
+  $: props = { modifiers, extras };
 
-  const blockClass = cb.build({ props });
+  $: blockClass = cb.build({ props });
   $: isChecked = group ? group.includes(value) : checked;
 </script>
 

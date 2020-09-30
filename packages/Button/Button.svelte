@@ -19,7 +19,6 @@
   export let disabled = false;
 
   onMount(() => {
-    //TODO: Check context here in action
     let ctx = getContext("BBMD:button:context");
     extras = [ctx];
   });

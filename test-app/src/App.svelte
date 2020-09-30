@@ -26,6 +26,7 @@
   import CardDemo from "./demos/CardDemo.svelte";
   import DatatableDemo from "./demos/DatatableDemo.svelte";
   import ListDemo from "./demos/ListDemo.svelte";
+  import SliderDemo from "./demos/SliderDemo.svelte";
 
   let fullwidth = false;
   let checked = true;
@@ -57,10 +58,11 @@
 
 <main />
 
+<SliderDemo />
+<CardDemo />
 <ButtonDemo />
 <CheckDemo />
 <RadioDemo />
 <TextfieldDemo />
-<CardDemo />
 <DatatableDemo />
 <ListDemo />

@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from "svelte";
+  import { onMount, getContext } from "svelte";
   import ripple from "../Common/Ripple.js";
   import ClassBuilder from "../ClassBuilder.js";
 
@@ -13,6 +13,10 @@
   export let icon = "";
   export let onIcon = ""; //on state icon for toggle button
   export let size = "medium";
+
+  onMount(() => {
+    context = getContext("BBMD:icon-button:context");
+  });
 
   function onButtonClick() {
     open = !open;

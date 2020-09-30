@@ -5,55 +5,105 @@
     Card,
     CardHeader,
     CardImage,
-    CardBody,
+    CardContent,
     CardActions,
+    PrimaryAction,
     CardText,
+    CardTitle,
   } from "@BBMD/Card";
-  import { Button, IconButton } from "@BBMD";
+  import { Button, IconButton, H6, Body1, Body2 } from "@BBMD";
+  import ActionButtons from "../../../packages/Card/ActionButtons.svelte";
+  import ActionIcons from "../../../packages/Card/ActionIcons.svelte";
 
   //TODO: Rows effecting height of cards, fix so this doesn't happen
   //TODO: Card text - could typography components not be used for this?
 </script>
 
-<Row title="Cards">
+<Row title="Simple Cards">
   <Card>
-    <CardImage />
-    <CardBody>
-      <CardHeader
-        title="My Card"
-        subtitle="This is a story about my first ever card component" />
-    </CardBody>
-    <CardActions>
-      <Button text="Read" />
-      <Button text="Cancel" />
-    </CardActions>
+    <CardContent>
+      <H6>A Simple Card</H6>
+      <Body2>with some supporting text</Body2>
+    </CardContent>
   </Card>
 
   <Card variant="outlined">
-    <CardBody useHoverEffect={false}>
-      <CardHeader
-        title="Simple Outlined Card"
-        subtitle="This card has no image and serves as a small clickable area with minimal information" />
-    </CardBody>
+    <PrimaryAction>
+      <CardContent primaryAction>
+        <H6>Outlined Card with Primary Action</H6>
+        <Body2>hover effects to show the body is clickable</Body2>
+      </CardContent>
+    </PrimaryAction>
+  </Card>
+
+  <!-- A card with button actions -->
+  <Card variant="outlined">
+    <CardContent>
+      <H6>A Card with Actions</H6>
+      <Body2>button actions to trigger related actions</Body2>
+    </CardContent>
     <CardActions>
-      <IconButton icon="star" />
-      <IconButton icon="share" />
+      <Button text="Action 1" />
+      <Button text="Action 2" />
     </CardActions>
   </Card>
 
-  <Card>
-    <CardBody>
-      <CardHeader
-        title="My Card"
-        subtitle="This is a story about my first ever card component" />
-      <CardText>
-        I provide the supporting text for any of your cards. Use me whenever you
-        need some textual content
-      </CardText>
-    </CardBody>
+  <!-- A card wih action buttons and icons -->
+  <Card variant="outlined">
+    <CardContent>
+      <H6>A Card with Multiple Actions</H6>
+      <Body2>use of icon buttons and normal buttons</Body2>
+    </CardContent>
     <CardActions>
-      <Button text="Read" />
-      <Button text="Cancel" />
+      <ActionButtons>
+        <Button text="Action 1" />
+        <Button text="Action 2" />
+      </ActionButtons>
+      <ActionIcons>
+        <IconButton icon="add_shopping_cart" />
+        <IconButton icon="share" />
+      </ActionIcons>
     </CardActions>
   </Card>
+</Row>
+
+<Row style="align-items: flex-end;" title="Complex Cards">
+  <!-- A card with header, media and content -->
+  <Card variant="outlined" width="350px">
+    <CardContent>
+      <H6>A Multi Content Card</H6>
+    </CardContent>
+    <PrimaryAction>
+      <CardImage />
+      <CardContent>
+        <Body2>
+          this card has multiple content types including an image, header, body
+          text and actions.
+        </Body2>
+      </CardContent>
+    </PrimaryAction>
+    <CardActions>
+      <Button text="Action 1" />
+      <Button text="Action 2" />
+    </CardActions>
+  </Card>
+
+  <!-- A card with image and image content -->
+  <Card variant="outlined" width="350px">
+    <PrimaryAction>
+      <CardImage>
+        <H6>Image Headline</H6>
+        <Body2>stunning views of mountain peaks</Body2>
+      </CardImage>
+      <CardContent>
+        <Body2>This card has text content embedded within its image</Body2>
+      </CardContent>
+    </PrimaryAction>
+    <CardActions>
+      <Button text="Action 1" />
+      <Button text="Action 2" />
+    </CardActions>
+  </Card>
+
+  <!-- TODO:A card with components within its body (slider, checkbuttons, text?) -->
 </Row>

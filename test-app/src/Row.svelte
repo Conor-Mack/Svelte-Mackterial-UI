@@ -1,6 +1,7 @@
 <script>
   import { H5 } from "@BBMD";
   export let title = "";
+  export let style = "";
 
   //TODO: differentiation header styles from group with some stying (bolding, color, underline maybe)
 </script>
@@ -21,16 +22,16 @@
     display: flex;
     flex-flow: row wrap;
     gap: 10px;
+    align-items: flex-start;
   }
 </style>
 
 <div class="row">
   <H5>{title}</H5>
 
-  <div class="content">
+  <div {style} class="content">
     <slot />
   </div>
 
   <hr />
-
 </div>

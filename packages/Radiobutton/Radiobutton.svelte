@@ -14,9 +14,10 @@
   let instance = null;
   let radiobtn = null;
 
-  let context = getContext("BBMD:input:context");
+  let context = null;
 
   onMount(() => {
+    context = getContext("BBMD:input:context");
     if (!!radiobtn) {
       instance = new MDCRadio(radiobtn);
       if (context !== "list-item") {
@@ -28,15 +29,15 @@
 
   let extras = null;
 
-  if (context === "list-item") {
+  $: if (context === "list-item") {
     extras = ["mdc-list-item__meta"];
   }
 
   const cb = new ClassBuilder("radio");
-  let modifiers = { disabled };
-  let props = { modifiers, extras };
+  $: modifiers = { disabled };
+  $: props = { modifiers, extras };
 
-  const blockClass = cb.build({ props });
+  $: blockClass = cb.build({ props });
 </script>
 
 {#if context !== 'list-item' && label}

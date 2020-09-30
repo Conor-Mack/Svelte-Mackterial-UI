@@ -1,7 +1,8 @@
 <script>
+  import { buildStyle } from "helpers";
   import ClassBuilder from "../ClassBuilder.js";
 
-  export let width = "350px";
+  export let width = "auto";
   export let height = "auto";
   export let variant = "standard";
 
@@ -10,8 +11,10 @@
   $: modifiers = { variant };
   $: props = { modifiers };
   $: cardClass = cb.build({ props });
+
+  $: style = buildStyle({ width, height });
 </script>
 
-<div style={`width: ${width}; height: ${height}`} class={cardClass}>
+<div {style} class={cardClass}>
   <slot />
 </div>

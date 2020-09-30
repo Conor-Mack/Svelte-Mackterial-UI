@@ -1,30 +1,30 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\conor\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add date-fnd
+  C:\Program Files\nodejs\node.exe C:\Users\Conor\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev rollup-plugin-aliases
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\conor\bin;C:\Python38\Scripts;C:\Python38;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0;C:\windows\System32\OpenSSH;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\nodejs;C:\apps\cli\vids;C:\Users\conor\.windows-build-tools\python27;C:\Users\conor\AppData\Local\Microsoft\WindowsApps;C:\tools\Cmder;C:\Users\conor\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\conor\AppData\Roaming\npm
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Conor\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\ProgramData\chocolatey\bin;C:\WINDOWS\System32\OpenSSH;C:\Users\Conor\AppData\Local\Android\Sdk;C:\Users\Conor\AppData\Local\Android\Sdk\platform-tools\adb.exe;C:\ffmpeg\bin;C:\Program Files\Microsoft VS Code\bin;C:\Gradle\gradle-5.5\bin;C:\Program Files (x86)\Calibre2;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Conor\.windows-build-tools\python27;C:\Users\Conor\AppData\Local\Programs\Python\Python37\Scripts;C:\Users\Conor\AppData\Local\Programs\Python\Python37;C:\Users\Conor\AppData\Local\Microsoft\WindowsApps;C:\tools\cmder;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.1.3\bin;C:\Program Files\Java\jdk1.8.0_211\bin;C:\Users\Conor\AppData\Roaming\npm;C:\Users\Conor\AppData\Local\hyper\app-3.0.2\resources\bin;C:\Users\Conor\AppData\Local\GitHubDesktop\bin
 
 Yarn version: 
-  1.21.1
+  1.9.4
 
 Node version: 
-  12.14.1
+  12.18.2
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/date-fnd: Not found
-      at Request.params.callback [as _callback] (C:\Users\conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66947:18)
-      at Request.self.callback (C:\Users\conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:140665:22)
-      at Request.emit (events.js:223:5)
-      at Request.<anonymous> (C:\Users\conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141637:10)
-      at Request.emit (events.js:223:5)
-      at IncomingMessage.<anonymous> (C:\Users\conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141559:12)
-      at Object.onceWrapper (events.js:312:28)
-      at IncomingMessage.emit (events.js:228:7)
-      at endReadableNT (_stream_readable.js:1185:12)
-      at processTicksAndRejections (internal/process/task_queues.js:81:21)
+  Error: https://registry.yarnpkg.com/rollup-plugin-aliases: Not found
+      at Request.params.callback [as _callback] (C:\Users\Conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:64202:18)
+      at Request.self.callback (C:\Users\Conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:137468:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (C:\Users\Conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:138440:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (C:\Users\Conor\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:138362:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1221:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
 
 npm manifest: 
   {
@@ -36,22 +36,28 @@ npm manifest:
       "start": "sirv public"
     },
     "devDependencies": {
+      "@material/slider": "4.0.0",
       "@rollup/plugin-commonjs": "^11.0.0",
       "@rollup/plugin-node-resolve": "^7.0.0",
       "rollup": "^1.20.0",
+      "rollup-plugin-commonjs": "^10.1.0",
       "rollup-plugin-livereload": "^1.0.0",
       "rollup-plugin-svelte": "^5.1.1",
       "rollup-plugin-terser": "^5.1.2",
       "svelte": "^3.0.0"
     },
     "dependencies": {
+      "@material/card": "4.0.0",
+      "@material/icon-button": "4.0.0",
       "@material/list": "4.0.0",
       "@material/menu": "4.0.0",
       "bind-decorator": "^1.0.11",
+      "date-fns": "^2.10.0",
       "material-components-web": "^4.0.0",
       "rollup-plugin-node-resolve": "^5.2.0",
       "rollup-plugin-postcss": "^2.0.5",
       "sass": "^1.25.1-test.1",
+      "shortid": "^2.2.15",
       "sirv-cli": "^0.4.4"
     }
   }
@@ -111,7 +117,7 @@ Lockfile:
       "@material/touch-target" "^4.0.0"
       "@material/typography" "^4.0.0"
   
-  "@material/card@^4.0.0":
+  "@material/card@4.0.0", "@material/card@^4.0.0":
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/@material/card/-/card-4.0.0.tgz#0356602f0b3eed37594e3f7e8874aad484d9b948"
     dependencies:
@@ -274,7 +280,7 @@ Lockfile:
       "@material/typography" "^4.0.0"
       tslib "^1.9.3"
   
-  "@material/icon-button@^4.0.0":
+  "@material/icon-button@4.0.0", "@material/icon-button@^4.0.0":
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/@material/icon-button/-/icon-button-4.0.0.tgz#f7293462f1b4967712f9b8755b87c2228dcccc3d"
     dependencies:
@@ -421,7 +427,7 @@ Lockfile:
     dependencies:
       "@material/feature-targeting" "^4.0.0"
   
-  "@material/slider@^4.0.0":
+  "@material/slider@4.0.0", "@material/slider@^4.0.0":
     version "4.0.0"
     resolved "https://registry.yarnpkg.com/@material/slider/-/slider-4.0.0.tgz#7a1596f7a31838e18cb7bbe15dec2d1131f82bb1"
     dependencies:
@@ -1077,6 +1083,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/csso/-/csso-4.0.2.tgz#e5f81ab3a56b8eefb7f0092ce7279329f454de3d"
     dependencies:
       css-tree "1.0.0-alpha.37"
+  
+  date-fns@^2.10.0:
+    version "2.10.0"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.10.0.tgz#abd10604d8bafb0bcbd2ba2e9b0563b922ae4b6b"
   
   debug@^2.2.0, debug@^2.3.3:
     version "2.6.9"
@@ -1828,6 +1838,10 @@ Lockfile:
     version "2.14.0"
     resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   
+  nanoid@^2.1.0:
+    version "2.1.11"
+    resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
+  
   nanomatch@^1.2.9:
     version "1.2.13"
     resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -2388,6 +2402,16 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/rgba-regex/-/rgba-regex-1.0.0.tgz#43374e2e2ca0968b0ef1523460b7d730ff22eeb3"
   
+  rollup-plugin-commonjs@^10.1.0:
+    version "10.1.0"
+    resolved "https://registry.yarnpkg.com/rollup-plugin-commonjs/-/rollup-plugin-commonjs-10.1.0.tgz#417af3b54503878e084d127adf4d1caf8beb86fb"
+    dependencies:
+      estree-walker "^0.6.1"
+      is-reference "^1.1.2"
+      magic-string "^0.25.2"
+      resolve "^1.11.0"
+      rollup-pluginutils "^2.8.1"
+  
   rollup-plugin-livereload@^1.0.0:
     version "1.0.4"
     resolved "https://registry.yarnpkg.com/rollup-plugin-livereload/-/rollup-plugin-livereload-1.0.4.tgz#480919211c699db85a532dabe9aa29035578f9c1"
@@ -2497,6 +2521,12 @@ Lockfile:
       is-extendable "^0.1.1"
       is-plain-object "^2.0.3"
       split-string "^3.0.1"
+  
+  shortid@^2.2.15:
+    version "2.2.15"
+    resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.15.tgz#2b902eaa93a69b11120373cd42a1f1fe4437c122"
+    dependencies:
+      nanoid "^2.1.0"
   
   simple-swizzle@^0.2.2:
     version "0.2.2"
