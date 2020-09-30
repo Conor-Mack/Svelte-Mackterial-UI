@@ -3,3 +3,4 @@
 /.vscode/
 /test-app/node_modules
 /test-app/public/build
+/test-app/public/images

@@ -7,3 +7,5 @@ export { default as CardHeader } from "./CardHeader.svelte";
 export { default as CardTitle } from "./CardTitle.svelte";
 export { default as CardText } from "./CardText.svelte";
 export { default as PrimaryAction } from "./PrimaryAction.svelte";
+export { default as ActionButtons } from "./ActionButtons.svelte";
+export { default as ActionIcons } from "./ActionIcons.svelte";

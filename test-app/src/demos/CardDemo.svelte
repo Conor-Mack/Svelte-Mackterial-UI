@@ -1,19 +1,17 @@
 <script>
-  import Group from "../Group.svelte";
   import Row from "../Row.svelte";
   import {
     Card,
-    CardHeader,
     CardImage,
     CardContent,
     CardActions,
     PrimaryAction,
-    CardText,
-    CardTitle,
+    ActionButtons,
+    ActionIcons,
   } from "@BBMD/Card";
-  import { Button, IconButton, H6, Body1, Body2 } from "@BBMD";
-  import ActionButtons from "../../../packages/Card/ActionButtons.svelte";
-  import ActionIcons from "../../../packages/Card/ActionIcons.svelte";
+  import { Button, IconButton, H6, Body2 } from "@BBMD";
+
+  import src from "../images/sunny-day.jpg";
 
   //TODO: Rows effecting height of cards, fix so this doesn't happen
   //TODO: Card text - could typography components not be used for this?
@@ -74,7 +72,7 @@
       <H6>A Multi Content Card</H6>
     </CardContent>
     <PrimaryAction>
-      <CardImage />
+      <CardImage url={src} />
       <CardContent>
         <Body2>
           this card has multiple content types including an image, header, body

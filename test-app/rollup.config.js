@@ -5,6 +5,7 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import alias from "rollup-plugin-alias";
 import postcss from "rollup-plugin-postcss";
+import url from "rollup-plugin-url";
 import path from "path";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -79,6 +80,12 @@ export default {
     // instead of npm run dev), minify
     production && terser(),
     postcss(postcssOptions()),
+    url({
+      limit: 0,
+      publicPath: "./images/",
+      sourceDir: path.join(__dirname, "src", "images"),
+      destDir: path.join(__dirname, "public", "images"),
+    }),
   ],
   watch: {
     clearScreen: false,
