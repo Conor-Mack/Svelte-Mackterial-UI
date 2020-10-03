@@ -1,6 +1,7 @@
 <script>
   import { buildStyle } from "helpers";
-  export let url = "https://picsum.photos/200/300";
+  export let url = "https://via.placeholder.com/200x300?text=Card+Image";
+
   export let contentColor = "";
 
   $: style = buildStyle({

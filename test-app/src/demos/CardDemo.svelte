@@ -12,6 +12,7 @@
   import { Button, IconButton, H6, Body2 } from "@BBMD";
 
   import src from "../images/sunny-day.jpg";
+  import forest from "../images/dark-forest.jpg";
 
   //TODO: Rows effecting height of cards, fix so this doesn't happen
   //TODO: Card text - could typography components not be used for this?
@@ -89,10 +90,10 @@
   <!-- A card with image and image content -->
   <Card variant="outlined" width="350px">
     <PrimaryAction>
-      <CardImage>
+      <CardImage url={forest}>
         <H6>Image Headline</H6>
         <Body2>stunning views of mountain peaks</Body2>
-      </CardImage>
+      </CardImage >
       <CardContent>
         <Body2>This card has text content embedded within its image</Body2>
       </CardContent>

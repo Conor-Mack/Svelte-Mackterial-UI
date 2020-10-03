@@ -6,7 +6,7 @@
 <Row>
   <List>
     <ListItem leadingIcon="label_important" text="Conor" />
-    <ListItem leadingIcon="label_important" text="Joe" />
+    <ListItem trailingIcon="label_important" text="Joe" />
     <ListItem leadingIcon="label_important" text="Billy" />
   </List>
 

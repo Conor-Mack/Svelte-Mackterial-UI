@@ -7,8 +7,10 @@
   import DatatableDemo from "./demos/DatatableDemo.svelte";
   import ListDemo from "./demos/ListDemo.svelte";
   import SliderDemo from "./demos/SliderDemo.svelte";
+  import MenuDemo from "./demos/MenuDemo.svelte";
 </script>
 
+<MenuDemo />
 <SliderDemo />
 <CardDemo />
 <ButtonDemo />

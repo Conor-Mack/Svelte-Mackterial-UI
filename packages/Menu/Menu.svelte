@@ -1,63 +1,77 @@
 <script>
-  import { List } from "../List";
+  import { buildStyle } from "helpers";
   import { MDCMenu } from "@material/menu";
-  import { onMount, setContext } from "svelte";
-  import createItemsStore from "../Common/ItemStore.js";
+  import { Corner } from "@material/menu-surface";
+  import { onMount, setContext, tick, createEventDispatcher } from "svelte";
 
-  //TODO: Svelte events
-  export let onSelect = (selectedItems) => {};
+  const dispatch = createEventDispatcher();
 
-  export let width = "400px";
-  export let open = true;
-  export let useFixedPosition = false;
-  export let useAbsolutePosition = false;
-  export let absolutePositionX = 0;
-  export let absolutePositionY = 0;
+  export const show = () => (instance.open = true);
+  export const hide = () => (instance.open = false);
+  export const toggle = () => (instance.open = !instance.open);
 
-  let menu = null;
-  let menuList = null;
-  let instance = null;
-  let selectedItemsStore;
+  let staticMenu = false;
+  export { staticMenu as static };
 
-  onMount(() => {
-    //TODO: Handle context properly here
-    // _bb.setContext("BBMD:list:context", "menu")
-    // _bb.setContext("BBMD:list:props", { singleSelection: true })
+  export let open = false;
+  export let anchorCorner = Corner.BOTTOM_RIGHT;
+  export let absolute = false;
+  export let x = 0;
+  export let y = 0;
 
-    //TODO: Remove create items store
-    selectedItemsStore = createItemsStore(() => onSelect($selectedItemsStore));
-    // _bb.setContext("BBMD:list:selectItemStore", selectedItemsStore)
+  let menu, instance;
 
+  onMount(async () => {
+    setContext("BBMD:list:context", "menu");
     if (!!menu) {
       instance = new MDCMenu(menu);
-      instance.open = open;
-      if (useFixedPosition) {
-        instance.setFixedPosition(true);
-      } else if (useAbsolutePosition) {
-        instance.setAbsolutePosition(absolutePositionX, absolutePositionY);
+      instance.open = staticMenu || open;
+      if (absolute) {
+        instance.setAbsolutePosition(x, y);
       }
+      instance.setAnchorCorner(anchorCorner);
     }
   });
+
+  async function opened() {
+    dispatch("opened");
+    if (staticMenu) {
+      await tick(); //wait for body click listener to be applied
+      instance.menuSurface_.deregisterBodyClickListener_();
+    }
+  }
+
+  function closed() {
+    dispatch("closed");
+  }
+
+  $: menuClass = buildStyle({ position: absolute ? "absolute" : "static" });
 </script>
 
-{#if useFixedPosition || useAbsolutePosition}
+<style>
+  .staticMenu {
+    transition: none;
+    display: block;
+    transform: scale(1);
+    opacity: 1;
+  }
+</style>
+
+{#if staticMenu}
   <div
     bind:this={menu}
     class="mdc-menu mdc-menu-surface"
-    style={`width: ${width}`}>
-    <!-- TODO: Adapt to make proper use of List component -->
-    <ul bind:this={menuList} class="mdc-list" role="menu" />
+    class:staticMenu
+    style={menuClass}
+    on:MDCMenuSurface:closed={closed}
+    on:MDCMenuSurface:opened={opened}>
+    <slot />
   </div>
 {:else}
   <div class="mdc-menu-surface--anchor">
-    <!--TODO: Will automatically anchor to slotted element. Test this -->
-    <slot />
-    <div
-      bind:this={menu}
-      class="mdc-menu mdc-menu-surface"
-      style={`width: ${width}`}>
-      <h4>fewwrgre</h4>
-      <ul bind:this={menuList} class="mdc-list" role="menu" />
+    <slot name="anchorEl" />
+    <div bind:this={menu} class="mdc-menu mdc-menu-surface">
+      <slot />
     </div>
   </div>
 {/if}

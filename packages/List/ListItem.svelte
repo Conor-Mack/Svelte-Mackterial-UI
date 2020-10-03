@@ -5,6 +5,7 @@
     getContext,
     createEventDispatcher,
   } from "svelte";
+  import Icon from "../Common/Icon.svelte";
   import ClassBuilder from "../ClassBuilder.js";
 
   const dispatch = createEventDispatcher();
@@ -16,6 +17,7 @@
     dispatch("click", item);
   };
 
+  let context = null;
   let group = null;
 
   export let text = "";
@@ -28,37 +30,45 @@
   export let trailingIcon = "";
 
   let role = "option";
+  let extras = [];
+  let iconClass = "mdc-list-item__graphic";
 
   onMount(() => {
-    let context = getContext("BBMD:list:context");
+    context = getContext("BBMD:list:context");
 
     if (context === "menu") {
       role = "menuitem";
+      iconClass += " mdc-menu__selection-group-icon";
     }
     if (actionElement) {
       setContext("BBMD:input:context", "list-item");
     }
   });
 
+  $: if (context === "menu" && selected) {
+    extras = ["mdc-menu-item--selected"];
+  }
+
   $: modifiers = {
     selected: !actionElement ? selected : null,
     disabled: disabled,
   };
-  $: props = { modifiers };
+  $: props = { modifiers, extras };
   $: listItemClass = cb.build({ props });
 </script>
 
 <li
   class={listItemClass}
-  role="option"
+  {role}
   aria-selected={selected}
   tabindex="0"
   on:click={handleClick}>
   {#if leadingIcon}
-    <span class="mdc-list-item__graphic material-icons" aria-hidden="true">
-      {leadingIcon}
+    <span class={iconClass} aria-hidden="true">
+      <Icon icon={leadingIcon} />
     </span>
   {/if}
+  <span class={cb.elem`ripple`} />
   <span class={cb.elem`text`}>
     {#if secondaryText}
       <span class={cb.elem`primary-text`}>{text}</span>
@@ -73,8 +83,8 @@
       {disabled}
       {group} />
   {:else if trailingIcon}
-    <span class="mdc-list-item__meta material-icons" aria-hidden="true">
-      {trailingIcon}
+    <span class="mdc-list-item__meta" aria-hidden="true">
+      <Icon icon={trailingIcon} />
     </span>
   {/if}
 </li>

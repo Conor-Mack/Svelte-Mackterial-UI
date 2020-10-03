@@ -25,7 +25,7 @@
   let role = "listbox";
 
   onMount(() => {
-    if (!!list) {
+    if (list) {
       instance = new MDCList(list);
       instance.singleSelection = singleSelection;
       instance.listElements.map((element) => new MDCRipple(element));
@@ -47,6 +47,6 @@
   $: listClass = cb.build({ props });
 </script>
 
-<ul class={listClass} {role}>
+<ul bind:this={list} class={listClass} {role}>
   <slot />
 </ul>

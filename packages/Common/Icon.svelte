@@ -27,6 +27,7 @@
   }
 </style>
 
+<!-- TODO: Change Icon to be slot -->
 {#if useRipple}
   <div use:ripple><i on:click={onClick} class={cls}>{icon}</i></div>
 {:else}<i class={cls}>{icon}</i>{/if}
