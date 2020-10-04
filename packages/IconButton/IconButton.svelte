@@ -7,16 +7,13 @@
 
   let on = false;
 
-  export let context = ""; //TODO: Properly deal with context
+  let context = getContext("BBMD:icon-button:context");
+
   export let disabled = false;
   export let href = "";
   export let icon = "";
   export let onIcon = ""; //on state icon for toggle button
   export let size = "medium";
-
-  onMount(() => {
-    context = getContext("BBMD:icon-button:context");
-  });
 
   function onButtonClick() {
     open = !open;

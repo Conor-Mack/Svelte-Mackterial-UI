@@ -19,6 +19,7 @@
 
   .content {
     flex: 1;
+    padding: 20px 0px;
     display: flex;
     flex-flow: row wrap;
     gap: 10px;

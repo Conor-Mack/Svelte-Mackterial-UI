@@ -1,7 +1,6 @@
 <script>
   import { setContext, onMount, createEventDispatcher } from "svelte";
   import { MDCTextField } from "@material/textfield";
-  import { MDCLineRipple } from "@material/line-ripple";
 
   import ClassBuilder from "../ClassBuilder.js";
   import NotchedOutline from "../Common/NotchedOutline.svelte";
@@ -21,6 +20,7 @@
 
   onMount(() => {
     if (!!tf) tfInstance = new MDCTextField(tf);
+
     return () => {
       !!tfInstance && tf.tfInstance && tf.tfInstance.destroy();
       tf = null;
@@ -49,6 +49,13 @@
   export let validation = false;
   export let persistent = false;
   export let value = "";
+
+  if (useIconButton) {
+    setContext(
+      "BBMD:icon-button:context",
+      "mdc-text-field__icon mdc-text-field__icon--trailing"
+    );
+  }
 
   //TODO: Is this necessary
   let id = `${label}-${variant}`;

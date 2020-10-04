@@ -8,6 +8,7 @@
   import ListDemo from "./demos/ListDemo.svelte";
   import SliderDemo from "./demos/SliderDemo.svelte";
   import MenuDemo from "./demos/MenuDemo.svelte";
+  import TypographyDemo from "./demos/TypographyDemo.svelte";
 </script>
 
 <MenuDemo />
@@ -19,3 +20,4 @@
 <TextfieldDemo />
 <DatatableDemo />
 <ListDemo />
+<TypographyDemo />

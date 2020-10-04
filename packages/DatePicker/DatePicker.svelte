@@ -126,8 +126,8 @@
     value={selectedDate}
     trailingIcon={true}
     useIconButton
-    on:click={openCalendar}
     icon="calendar_today"
+    on:click={openCalendar}
     label="Select Date" />
 
   <div
