@@ -9,8 +9,12 @@
   import SliderDemo from "./demos/SliderDemo.svelte";
   import MenuDemo from "./demos/MenuDemo.svelte";
   import TypographyDemo from "./demos/TypographyDemo.svelte";
+  import IconButtonDemo from "./demos/IconButtonDemo.svelte";
+  import SelectDemo from "./demos/SelectDemo.svelte";
 </script>
 
+<SelectDemo />
+<IconButtonDemo />
 <MenuDemo />
 <SliderDemo />
 <CardDemo />

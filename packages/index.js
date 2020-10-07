@@ -14,3 +14,4 @@ export { DatePicker } from "./DatePicker";
 export { IconButton } from "./IconButton";
 export { Card } from "./Card";
 export { Slider } from "./Slider";
+export * from "./Select";

@@ -1,14 +1,24 @@
 <script>
+  import ClassBuilder from "../ClassBuilder.js";
   import { buildStyle } from "helpers";
   import { MDCMenu } from "@material/menu";
-  import { Corner } from "@material/menu-surface";
-  import { onMount, setContext, tick, createEventDispatcher } from "svelte";
+  import { Corner, MDCMenuSurface } from "@material/menu-surface";
+  import {
+    onMount,
+    setContext,
+    getContext,
+    tick,
+    createEventDispatcher,
+  } from "svelte";
 
   const dispatch = createEventDispatcher();
+  const cb = new ClassBuilder("menu");
 
   export const show = () => (instance.open = true);
   export const hide = () => (instance.open = false);
   export const toggle = () => (instance.open = !instance.open);
+
+  let context = getContext("BBMD:menu:context");
 
   let staticMenu = false;
   export { staticMenu as static };
@@ -20,9 +30,9 @@
   export let y = 0;
 
   let menu, instance;
+  setContext("BBMD:list:context", "menu");
 
   onMount(async () => {
-    setContext("BBMD:list:context", "menu");
     if (!!menu) {
       instance = new MDCMenu(menu);
       instance.open = staticMenu || open;
@@ -34,7 +44,7 @@
   });
 
   async function opened() {
-    dispatch("opened");
+    dispatch("open");
     if (staticMenu) {
       await tick(); //wait for body click listener to be applied
       instance.menuSurface_.deregisterBodyClickListener_();
@@ -45,7 +55,9 @@
     dispatch("closed");
   }
 
-  $: menuClass = buildStyle({ position: absolute ? "absolute" : "static" });
+  $: props = { extras: ["mdc-menu-surface", context] };
+  $: menuClass = cb.build({ props });
+  $: style = buildStyle({ position: absolute ? "absolute" : "static" });
 </script>
 
 <style>
@@ -60,9 +72,9 @@
 {#if staticMenu}
   <div
     bind:this={menu}
-    class="mdc-menu mdc-menu-surface"
+    class={menuClass}
     class:staticMenu
-    style={menuClass}
+    {style}
     on:MDCMenuSurface:closed={closed}
     on:MDCMenuSurface:opened={opened}>
     <slot />

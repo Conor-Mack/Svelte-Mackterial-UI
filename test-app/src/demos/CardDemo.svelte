@@ -103,6 +103,4 @@
       <Button text="Action 2" />
     </CardActions>
   </Card>
-
-  <!-- TODO:A card with components within its body (slider, checkbuttons, text?) -->
 </Row>

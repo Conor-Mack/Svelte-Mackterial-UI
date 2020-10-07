@@ -12,6 +12,7 @@
   } from "date-fns";
   import { MDCMenu } from "@material/menu";
   import { Textfield } from "../Textfield";
+  import { IconButton } from "../IconButton";
   import Icon from "../Common/Icon.svelte";
   import ripple from "../Common/Ripple.js";
   import { Body1, Body2, Caption } from "../Typography";
@@ -72,14 +73,14 @@
 
 <style>
   .bbmd-menu {
-    width: 310px;
+    width: 320px;
     height: auto;
     padding: 5px;
   }
 
   .month-picker {
     display: grid;
-    grid-template-columns: 20px 1fr 20px;
+    grid-template-columns: 48px 1fr 48px;
     justify-content: center;
     align-items: center;
   }
@@ -115,7 +116,6 @@
 </style>
 
 <!-- 
-  TODO: Add trailing icon button on textfield that is clickable
   TODO: Add transition effects to toggling of calendar
   TODO: Bug - August 2020 has too many rows. find out why
   TODO: Bug - make out transition of date bg colour instantaneous
@@ -137,13 +137,17 @@
     <div class="calendar-container">
       <div class="month-picker">
         <span>
-          <Icon icon="chevron_left" onClick={subtractMonth} />
+          <IconButton on:click={subtractMonth}>
+            <Icon>chevron_left</Icon> 
+          </IconButton>
         </span>
         <div class="centreText">
           <Body1>{monthAndYear}</Body1>
         </div>
         <span>
-          <Icon icon="chevron_right" onClick={addMonth} />
+          <IconButton on:click={addMonth}>          
+            <Icon>chevron_right</Icon>
+          </IconButton>
         </span>
       </div>
       <div class="week-days">
@@ -159,6 +163,7 @@
         {#each daysArr as day, i}
           <div
             use:ripple
+            style={i === 0 ? `grid-column-start: ${dayStart}` : ``}
             on:click={() => selectDate(day)}
             class={`bbmd-day ${dayOfSelectedDate === day && sameMonthAndYear ? 'selected' : ''}`}>
             {#if i === 0}

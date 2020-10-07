@@ -14,6 +14,7 @@
 
   const cb = new ClassBuilder("list");
 
+  let context = getContext("BBMD:list:context");
   let list = null;
   let instance = null;
 
@@ -31,7 +32,6 @@
       instance.listElements.map((element) => new MDCRipple(element));
     }
 
-    let context = getContext("BBMD:list:context");
     if (context === "menu") {
       role = "menu";
     }

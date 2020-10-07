@@ -50,6 +50,10 @@
   export let persistent = false;
   export let value = "";
 
+  if (icon) {
+    setContext("BBMD:icon:context", "mdc-text-field__icon");
+  }
+
   if (useIconButton) {
     setContext(
       "BBMD:icon-button:context",
@@ -129,12 +133,11 @@
     <div class="textfield-container" class:fullwidth>
       {#if renderLeadingIcon}
         {#if useIconButton}
-          <IconButton
-            {icon}
-            context="mdc-text-field__icon mdc-text-field__icon--trailing"
-            on:click />
+          <IconButton on:click>
+            <Icon>{icon}</Icon>
+          </IconButton>
         {:else}
-          <Icon context="text-field" {icon} />
+          <Icon>{icon}</Icon>
         {/if}
       {/if}
       <input
@@ -152,12 +155,11 @@
         on:focus={focus} />
       {#if renderTrailingIcon}
         {#if useIconButton}
-          <IconButton
-            {icon}
-            context="mdc-text-field__icon mdc-text-field__icon--trailing"
-            on:click />
+          <IconButton on:click>
+            <Icon>{icon}</Icon>
+          </IconButton>
         {:else}
-          <Icon context="text-field" {icon} />
+          <Icon>{icon}</Icon>
         {/if}
       {/if}
       {#if variant !== 'outlined'}

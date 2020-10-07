@@ -2,12 +2,9 @@
   import { buildStyle } from "helpers";
   export let url = "https://via.placeholder.com/200x300?text=Card+Image";
 
-  export let contentColor = "";
+  export let contentColor = null;
 
-  $: style = buildStyle({
-    backgroundImage: `url(${url})`,
-    color: contentColor,
-  });
+  $: style = buildStyle({ color: contentColor });
 </script>
 
 <style>
@@ -22,7 +19,7 @@
 <div
   style={`background-image: url(${url});`}
   class="mdc-card__media mdc-card__media--16-9">
-  <div style={`color: ${contentColor}`} class="card-image__content">
+  <div {style} class="card-image__content">
     <slot />
   </div>
 </div>

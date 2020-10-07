@@ -1,0 +1,12 @@
+@use "@material/list/mdc-list";
+@use "@material/menu-surface/mdc-menu-surface";
+@use "@material/menu/mdc-menu";
+@import "@material/select/mdc-select";
+
+.shaped-outline {
+  @include mdc-select-outline-shape-radius(16px);
+}
+
+.shaped-filled {
+  @include mdc-select-shape-radius(16px);
+}

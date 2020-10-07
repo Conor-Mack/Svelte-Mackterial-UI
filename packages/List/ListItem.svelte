@@ -17,7 +17,7 @@
     dispatch("click", item);
   };
 
-  let context = null;
+  let context = getContext("BBMD:list:context");
   let group = null;
 
   export let text = "";
@@ -34,8 +34,6 @@
   let iconClass = "mdc-list-item__graphic";
 
   onMount(() => {
-    context = getContext("BBMD:list:context");
-
     if (context === "menu") {
       role = "menuitem";
       iconClass += " mdc-menu__selection-group-icon";
@@ -65,7 +63,7 @@
   on:click={handleClick}>
   {#if leadingIcon}
     <span class={iconClass} aria-hidden="true">
-      <Icon icon={leadingIcon} />
+      <Icon>{leadingIcon}</Icon>
     </span>
   {/if}
   <span class={cb.elem`ripple`} />
@@ -84,7 +82,7 @@
       {group} />
   {:else if trailingIcon}
     <span class="mdc-list-item__meta" aria-hidden="true">
-      <Icon icon={trailingIcon} />
+      <Icon>{trailingIcon}</Icon>
     </span>
   {/if}
 </li>

@@ -1,34 +1,83 @@
 <script>
-  import { onMount, getContext } from "svelte";
-  import ripple from "../Common/Ripple.js";
+  import { MDCRipple } from "@material/ripple";
+  import {
+    onMount,
+    setContext,
+    getContext,
+    createEventDispatcher,
+  } from "svelte";
   import ClassBuilder from "../ClassBuilder.js";
 
-  const cb = new ClassBuilder("icon-button");
+  const cb = new ClassBuilder("icon-button", ["medium"]);
+  const dispatch = createEventDispatcher();
 
+  setContext("BBMD:icon:context", "mdc-icon-button__icon");
+
+  export let toggle = false;
   let on = false;
 
+  let iconButton, iconRipple;
   let context = getContext("BBMD:icon-button:context");
 
   export let disabled = false;
-  export let href = "";
-  export let icon = "";
-  export let onIcon = ""; //on state icon for toggle button
+  export let href = null;
   export let size = "medium";
 
+  export let label = "";
+
+  onMount(() => {
+    if (iconButton) {
+      iconRipple = new MDCRipple(iconButton);
+      iconRipple.unbounded = true;
+    }
+  });
+
   function onButtonClick() {
-    open = !open;
+    dispatch("click", on);
+    if (toggle) {
+      on = !on;
+    }
   }
 
-  $: isToggleButton = !!icon && !!onIcon;
-  $: useLinkButton = !!href;
-
+  $: modifiers = { on };
   $: customs = { size };
-  $: props = { customs, extras: ["material-icons", context] };
+  $: props = {
+    modifiers,
+    customs,
+    extras: [context],
+  };
   $: iconBtnClass = cb.build({ props });
 </script>
 
-{#if useLinkButton}
+{#if href}
   <a
+    {href}
+    bind:this={iconButton}
+    on:click={onButtonClick}
+    class={iconBtnClass}
+    {disabled}
+    role="button"
+    aria-label={label}
+    tabindex="0">
+    <slot />
+  </a>
+{:else}
+  <button
+    bind:this={iconButton}
+    on:click={onButtonClick}
+    on:click
+    class={iconBtnClass}
+    {disabled}
+    role="button"
+    aria-label={label}
+    tabindex="0">
+    <slot />
+  </button>
+{/if}
+
+<!-- {#if useLinkButton}
+  <a
+    bind:this={iconButton}
     on:click={onButtonClick}
     on:click
     class={iconBtnClass}
@@ -47,6 +96,7 @@
   </a>
 {:else}
   <button
+    bind:this={iconButton}
     on:click={onButtonClick}
     on:click
     class={iconBtnClass}
@@ -64,4 +114,4 @@
       </i>
     {:else}{icon}{/if}
   </button>
-{/if}
+{/if} -->
