@@ -15,3 +15,4 @@ export { IconButton } from "./IconButton";
 export { Card } from "./Card";
 export { Slider } from "./Slider";
 export * from "./Select";
+export { Topappbar } from "./Topappbar";

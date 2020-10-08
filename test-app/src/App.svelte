@@ -11,7 +11,10 @@
   import TypographyDemo from "./demos/TypographyDemo.svelte";
   import IconButtonDemo from "./demos/IconButtonDemo.svelte";
   import SelectDemo from "./demos/SelectDemo.svelte";
+  import { Topappbar } from "@BBMD";
 </script>
+
+<Topappbar title="Svelte Mackterial UI" />
 
 <SelectDemo />
 <IconButtonDemo />
