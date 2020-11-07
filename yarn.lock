@@ -90,7 +90,7 @@
     "@material/typography" "^4.0.0"
     tslib "^1.9.3"
 
-"@material/data-table@^4.0.0":
+"@material/data-table@4.0.0", "@material/data-table@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/data-table/-/data-table-4.0.0.tgz#9ad3fe1e05cd893ac097a73c312d1201ea2a07d6"
   dependencies:
@@ -112,7 +112,7 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/density/-/density-4.0.0.tgz#5bc4bba6c1232f6e075c88295357e6ebdee4353f"
 
-"@material/dialog@^4.0.0":
+"@material/dialog@4.0.0", "@material/dialog@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/dialog/-/dialog-4.0.0.tgz#09861315b80c217acf2a8a9f9ea6201e2cf2d2a7"
   dependencies:
@@ -136,7 +136,7 @@
   dependencies:
     tslib "^1.9.3"
 
-"@material/drawer@^4.0.0":
+"@material/drawer@4.0.0", "@material/drawer@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/drawer/-/drawer-4.0.0.tgz#07d66e4170f6b802ef902248dbddb1693ead55f2"
   dependencies:
@@ -335,7 +335,7 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/rtl/-/rtl-4.0.0.tgz#bc07e0a7c47174b2542862c252b0e35b44329c47"
 
-"@material/select@^4.0.0":
+"@material/select@4.0.0", "@material/select@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/select/-/select-4.0.0.tgz#18d3428a72277858ca92fae543420b4b7f1ec247"
   dependencies:
@@ -389,7 +389,7 @@
     "@material/typography" "^4.0.0"
     tslib "^1.9.3"
 
-"@material/switch@^4.0.0":
+"@material/switch@4.0.0", "@material/switch@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/switch/-/switch-4.0.0.tgz#5c5da30389f48f4f5245eb9f325cbc0e5f6bf2d4"
   dependencies:
@@ -474,7 +474,7 @@
   dependencies:
     "@material/feature-targeting" "^4.0.0"
 
-"@material/top-app-bar@^4.0.0":
+"@material/top-app-bar@4.0.0", "@material/top-app-bar@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@material/top-app-bar/-/top-app-bar-4.0.0.tgz#f59d3c4a4fcb6e2ed7cc78e3642a751c62265b95"
   dependencies:

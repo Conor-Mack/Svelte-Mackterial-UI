@@ -57,15 +57,17 @@
 
   $: props = { extras: ["mdc-menu-surface", context] };
   $: menuClass = cb.build({ props });
-  $: style = buildStyle({ position: absolute ? "absolute" : "static" });
+  $: style = buildStyle({ position: absolute ? "absolute" : null });
 </script>
 
 <style>
   .staticMenu {
+    position: static;
     transition: none;
     display: block;
     transform: scale(1);
     opacity: 1;
+    z-index: 0;
   }
 </style>
 

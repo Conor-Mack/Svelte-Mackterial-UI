@@ -10,33 +10,50 @@
 
   let appBarEl, instance;
 
-  export let navOpen = false;
+  export let adjustClass = "mdc-top-app-bar";
+  export let scrollTarget = null;
+
+  export let navOpen = true;
   export let title = "";
+  export let icon = "menu";
   export let variant = "";
   export let collapsed = false;
-  export let fixedAdjust = false;
 
   export let contextual = false;
+  export let contextualTitle = "";
+  export let contextualIcon = "";
 
   onMount(() => {
     if (appBarEl) {
       instance = new MDCTopAppBar(appBarEl);
+      adjustClass += !variant
+        ? "mdc-top-app-bar--fixed-adjust"
+        : `mdc-top-app-bar--${variant}-fixed-adjust`;
     }
   });
 
   function handleNavClick() {
     navOpen = !navOpen;
-    dispatch("nav-click");
+    dispatch("nav-click", navOpen);
   }
 
   $: shortCollapsed =
     collapsed && variant === "short" ? "short-collapsed" : null;
-  $: fixedAd = fixedAdjust && variant ? `${variant}-fixed-adjust` : null;
 
-  $: modifiers = { variant, shortCollapsed, fixedAd };
+  $: if (instance && scrollTarget) {
+    instance.setScrollTarget(scrollTarget);
+  }
+
+  $: modifiers = { variant, shortCollapsed };
   $: props = { modifiers };
   $: topbarClass = cb.build({ props });
 </script>
+
+<style>
+  .mdc-top-app-bar {
+    z-index: 7;
+  }
+</style>
 
 <header bind:this={appBarEl} class={topbarClass}>
   <div class="mdc-top-app-bar__row">
@@ -45,8 +62,12 @@
       <button
         on:click={handleNavClick}
         class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button"
-        aria-label="Open navigation menu">menu</button>
-      {#if title}<span class="mdc-top-app-bar__title">{title}</span>{/if}
+        aria-label="Open navigation menu">
+        {contextual && contextualIcon ? contextualIcon : icon}
+      </button>
+      <span class="mdc-top-app-bar__title">
+        {contextual && contextualTitle ? contextualTitle : title}
+      </span>
       <slot name="title-content" />
     </section>
     <section

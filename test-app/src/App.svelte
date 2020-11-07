@@ -11,20 +11,57 @@
   import TypographyDemo from "./demos/TypographyDemo.svelte";
   import IconButtonDemo from "./demos/IconButtonDemo.svelte";
   import SelectDemo from "./demos/SelectDemo.svelte";
-  import { Topappbar } from "@BBMD";
+  import { Topappbar, Drawer, DrawerItem } from "@BBMD";
+
+  let adjustClass = "";
+  let scrollTarget;
+
+  let drawer;
 </script>
 
-<Topappbar title="Svelte Mackterial UI" />
+<style>
+  :global(body) {
+    display: flex;
+    height: 100vh;
+  }
 
-<SelectDemo />
-<IconButtonDemo />
-<MenuDemo />
-<SliderDemo />
-<CardDemo />
-<ButtonDemo />
-<CheckDemo />
-<RadioDemo />
-<TextfieldDemo />
-<DatatableDemo />
-<ListDemo />
-<TypographyDemo />
+  .mdc-drawer-app-content {
+    flex: auto;
+    overflow: auto;
+    position: relative;
+  }
+
+  main {
+    overflow: auto;
+    height: 100%;
+  }
+</style>
+
+<Topappbar
+  bind:adjustClass
+  on:nav-click={drawer.toggle}
+  title="Svelte Mackterial UI" />
+
+<Drawer bind:this={drawer} variant="modal" {adjustClass}>
+  <DrawerItem activated>Buttons</DrawerItem>
+  <DrawerItem>Textfields</DrawerItem>
+  <DrawerItem>Drawer</DrawerItem>
+  <DrawerItem>Select</DrawerItem>
+</Drawer>
+
+<div class={`mdc-drawer-app-content ${adjustClass}`}>
+  <main bind:this={scrollTarget}>
+    <CardDemo />
+    <SelectDemo />
+    <IconButtonDemo />
+    <MenuDemo />
+    <SliderDemo />
+    <ButtonDemo />
+    <CheckDemo />
+    <RadioDemo />
+    <TextfieldDemo />
+    <DatatableDemo />
+    <ListDemo />
+    <TypographyDemo />
+  </main>
+</div>

@@ -38,6 +38,7 @@
   export let minLength = null;
   export let maxLength = 255;
   export let helperText = "";
+  export let hideHelperText = false;
   export let errorText = "";
   export let placeholder = "";
   export let icon = "";
@@ -49,6 +50,7 @@
   export let validation = false;
   export let persistent = false;
   export let value = "";
+  export let width = "";
 
   if (icon) {
     setContext("BBMD:icon:context", "mdc-text-field__icon");
@@ -61,10 +63,9 @@
     );
   }
 
-  //TODO: Is this necessary
   let id = `${label}-${variant}`;
 
-  let modifiers = { fullwidth, disabled, textarea };
+  let modifiers = { fullwidth, disabled, textarea, width };
   let customs = { colour };
 
   if (variant == "standard" || fullwidth) {
@@ -105,7 +106,6 @@
   .textfield-container {
     display: flex;
     flex-direction: column;
-    width: 227px;
   }
 
   .fullwidth {
@@ -177,9 +177,11 @@
     <FloatingLabel forInput={id} text={label} />
   {/if}
 </div>
-<HelperText
-  {persistent}
-  {validation}
-  {errorText}
-  {helperText}
-  useCharCounter={!!maxLength && !textarea} />
+{#if !hideHelperText}
+  <HelperText
+    {persistent}
+    {validation}
+    {errorText}
+    {helperText}
+    useCharCounter={!!maxLength && !textarea} />
+{/if}

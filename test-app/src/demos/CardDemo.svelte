@@ -9,13 +9,20 @@
     ActionButtons,
     ActionIcons,
   } from "@BBMD/Card";
-  import { Button, IconButton, H6, Body2 } from "@BBMD";
+  import {
+    Button,
+    IconButton,
+    H6,
+    Body2,
+    Textfield,
+    Select,
+    Option,
+  } from "@BBMD";
 
   import src from "../images/sunny-day.jpg";
   import forest from "../images/dark-forest.jpg";
 
   //TODO: Rows effecting height of cards, fix so this doesn't happen
-  //TODO: Card text - could typography components not be used for this?
 </script>
 
 <Row title="Simple Cards">
@@ -93,7 +100,7 @@
       <CardImage url={forest}>
         <H6>Image Headline</H6>
         <Body2>stunning views of mountain peaks</Body2>
-      </CardImage >
+      </CardImage>
       <CardContent>
         <Body2>This card has text content embedded within its image</Body2>
       </CardContent>
