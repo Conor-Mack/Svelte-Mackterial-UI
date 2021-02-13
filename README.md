@@ -1,4 +1,4 @@
-# Svelte Mackterial UI  👨‍💻
+# Svelte Material Components  👨‍💻
 
 A library of Material UI components built using Svelte
 
